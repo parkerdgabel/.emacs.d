@@ -1,0 +1,457 @@
+* Emacs Configuration
+** Introduction
+
+This is the emacs configuration for Parker Gabel. It is written entirely in one
+Org file. It is meant to form a maximally portable emacs configuration for
+programming, writing, and the use of org-mode. You are free to modify this an
+anyway. In fact, I encourage the user to personalize their Emacs experience.
+
+** Usage
+
+This configuration is controlled completely by this org file. Any modification
+to the configuration should be done in this file then tangled in the init.el
+file.  You need not track this init.el file, as it will be overwritten every
+time this file is saved. This file does require some bootstrapping, however.
+
+
+Emacs cannot load org files. Instead, Org-mode provides an excellent utility
+called org-babel. Org-babel facilitates [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] in
+org-files. Everytime a change is made to this file, the source code blocks must
+be extracted and placed sequentially into the init.el, overwriting the file.
+
+
+The configuration must be bootrapped by an existing init.el the first time it is
+ran. The following code must be placed in an existing init.el file in a
+./.emacs.d directory. This code does not tangle. If it did there would be an
+infinite recursive load of the init.el file.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+;; This file replaces itself with the actual configuration at first run.
+
+;; We can't tangle without org!
+(require 'org)
+;; Open the configuration
+(find-file (concat user-emacs-directory "init.org"))
+;; tangle it
+(org-babel-tangle)
+;; load it
+(load-file (concat user-emacs-directory "init.el"))
+;; finally byte-compile it
+(byte-compile-file (concat user-emacs-directory "init.el"))
+
+#+END_SRC
+
+** Bootstrapping
+
+This configuration uses lexical scoping. This can be done in the header of the
+init.el file.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+;;; -*- lexical-binding: t -*-
+#+END_SRC
+
+
+Secondly, Everytime this file is changed and saved, this file tangles and
+loads. This is accomplished by the following function.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(defun tangle-init ()
+  "If the current buffer is 'init.org' the code-blocks are
+tangled, and the tangled file is compiled."
+  (when (equal (buffer-file-name)
+               (expand-file-name (concat user-emacs-directory "init.org")))
+    ;; Avoid running hooks when tangling.
+    (let ((prog-mode-hook nil))
+      (org-babel-tangle)
+      (byte-compile-file (concat user-emacs-directory "init.el")))))
+#+END_SRC
+
+
+Then this function is added to the after-save hook, so it is executed after
+every save made to this file
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(add-hook 'after-save-hook 'tangle-init)
+#+END_SRC
+
+
+Any private or sensative setting should be placed in a private.el.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(add-hook
+ 'after-init-hook
+ (lambda ()
+   (let ((private-file (concat user-emacs-directory "private.el")))
+     (when (file-exists-p private-file)
+       (load-file private-file)))))
+#+END_SRC
+
+
+Melpa is an indispensible package repository for Emacs. It is added and
+initialized now.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(require 'package)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+
+#+END_SRC
+
+
+[[https://github.com/jwiegley/use-package][Use-package]] is an excellent way to manage a configuration's
+packages. Use-package is used extensively in this configuration and must be
+bootstrapped.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+
+(unless (package-installed-p 'use-package)
+ (package-refresh-contents)
+ (package-install 'use-package))
+
+ (require 'use-package)
+
+#+END_SRC
+
+** UI Preferences
+
+This configuration now sets some UI preferences. Any theming should be done in
+this section.
+
+
+Tool-bar-mode, scroll-bar-mode, blink-cursor-mode and menu-bar-mode are just
+distractions. Disable them now
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(dolist (mode
+	 '(tool-bar-mode
+	   scroll-bar-mode
+	   blink-cursor-mode
+	   menu-bar-mode))
+  (funcall mode 0))
+
+#+END_SRC
+
+
+Now set UI modes that should be set.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(dolist (mode
+         '(global-hl-line-mode
+           global-visual-line-mode
+           display-time-mode
+           display-battery-mode))
+ (funcall mode t))
+
+#+END_SRC
+
+
+[[https://github.com/domtronn/all-the-icons.el][All-the-icons]] is needed for the doom-modeline. All-the-icons fonts must be installed after all-the icons is loaded.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package all-the-icons
+  :ensure t
+  :config
+  (all-the-icons-install-fonts t))
+
+#+END_SRC
+
+
+[[https://github.com/jaypei/emacs-neotree][Neotree]] is used for directory navigation. This configuration binds "C-x C-n" to toggle the neotree buffer.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package neotree
+  :ensure t
+  :bind ("C-x C-n" . neotree-toggle))
+
+#+END_SRC
+
+[[https://github.com/hlissner/emacs-doom-themes][Doom Themes]] is used for this configuration.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-one-light t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
+
+#+END_SRC
+
+
+[[https://github.com/seagle0128/doom-modeline][Doom modeline]] is a better modeline than the default emacs mode line.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode)
+      :config
+      (setq doom-modeline-icon t)
+      (setq doom-modeline-major-mode-icon t)
+      (setq doom-modeline-major-mode-color-icon t)
+      (setq doom-modeline-minor-modes nil))
+
+#+END_SRC
+
+[[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]] is useful and it is set here.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-init-info t))
+
+#+END_SRC
+
+
+[[https://github.com/Malabarba/beacon][Beacon]] is helpful to keep track of the point when changing buffers.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package beacon
+  :ensure t)
+
+(beacon-mode t)
+
+#+END_SRC
+
+
+[[https://github.com/justbur/emacs-which-key][Which-key]] is helpful to learn keyboard commands.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1)
+  (which-key-setup-side-window-right-bottom))
+
+#+END_SRC
+
+
+[[https://github.com/gonewest818/dimmer.el][Dimmer]] dims all inactive buffers.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package dimmer
+  :ensure t
+  :config
+  (dimmer-mode t))
+
+#+END_SRC
+
+[[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]] is used to highlight parentheses. This is useful for all
+programming languages but especially lisps.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (rainbow-delimiters-mode t))
+
+#+END_SRC
+
+
+Now make the frame transparent. This can be toggled by the function defined
+later in this file called toggle-transparency.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(set-frame-parameter (selected-frame) 'alpha '(75 . 30))
+(add-to-list 'default-frame-alist '(alpha . (75 . 30)))
+
+#+END_SRC
+
+** Helm
+
+[[https://github.com/emacs-helm/helm][Helm]] is a powerful completion framework for emacs.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package helm
+  :ensure t
+  :bind (("C-c h" . helm-command-prefix)
+         ("<tab>" . helm-execute-persistent-action)
+         ("C-z" . helm-select-action)
+         ("M-x" . helm-M-x)
+         ("M-y" . helm-show-kill-ring)
+         ("C-x C-f" . helm-find-files)
+         ("C-c o" . helm-occur)
+	 ("C-x b" . helm-mini))
+  :config
+  (require 'helm-config)
+  (helm-autoresize-mode t)
+  (helm-mode t)
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match    t)
+  (setq helm-semantic-fuzzy-match t
+        helm-imenu-fuzzy-match    t))
+
+#+END_SRC
+
+[[https://github.com/ShingoFukuyama/helm-swoop][Helm-swoop]] is a great searching tool.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package helm-swoop
+  :ensure t
+  :bind
+  ("C-s" . helm-swoop))
+
+#+END_SRC
+** Company
+
+[[http://company-mode.github.io/][Company]] is an excellent in-buffer completion framework.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t)
+  (setq company-idle-delay 0.2)
+  (setq company-minimum-prefix-length 1)
+  (setq company-show-numbers t))
+
+#+END_SRC
+** Org
+
+[[https://orgmode.org/][Org-mode]] is amazing. It is an extrodinarily powerful task manager and note
+taking software. This is my set up for Getting Things Done.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package org
+  :ensure t
+  :config
+  (setq org-pretty-entities t)
+  (setq org-agenda-files '("~/gtd/gtd.org"))
+  (setq org-refile-targets '(("gtd.org")))
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJECT(p)"
+  "WAITING(w)" "APPT(a)" "HOMEWORK(h)" "EXAM(e)" "BILL(b)" "WORK(m)" "|"
+  "DONE(d)" "CANCELLED(c)")))
+  (setq org-tag-alist '(("@school" . ?s)
+			    ("@home" . ?h)
+			    ("email" . ?e)
+			    ("phone" . ?p)
+			    ("habit" . ?H)
+			    ("emacs" . ?E)
+			    ("wife" . ?w)
+			    ("personal" . ?P)
+			    ("outcome" . ?o)
+			    ("750words" . ?7)))
+  (setq org-capture-templates '(
+                                ("t" "Task" entry
+                                 (file+headline "~/gtd/gtd.org" "Tasks")
+                                 "* TODO %i%?")
+                                ("a" "Appointment" entry
+				 (file+headline "~/gtd/tickler.org" "Appointments")
+				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
+  (org-indent-mode t))
+
+#+END_SRC
+
+[[https://github.com/bastibe/org-journal][Org-journal]] is a simple journaling utility in org mode.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package org-journal
+  :ensure t)
+
+#+END_SRC
+
+[[https://github.com/alphapapa/org-s][Org-Super-Agenda]] is a way to customize org agenda items.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package org-super-agenda
+  :ensure t
+  :config
+  (org-super-agenda-mode t)
+  (setq org-super-agenda-groups
+        (quote ((:name "Appointments" :todo "APPT" :time-grid t)
+                (:name "Homework" :todo "HOMEWORK")
+                (:name "Exams" :todo "EXAM")))))
+
+#+END_SRC
+** Utilities
+
+[[https://github.com/Fuco1/smartparens][Smartparens]] is an indispensible tool for any programming language.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package smartparens
+  :ensure t
+  :bind
+  (("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+   ("C-M-a" . sp-beginning-of-sexp)
+   ("C-M-e" . sp-end-of-sexp)
+   ("C-M-n" . sp-next-sexp)
+   ("C-M-p" . sp-previous-sexp))
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-strict-mode t))
+
+#+END_SRC
+** User-Defined Functions
+
+This section is for any functions that the user would like to define.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(75 . 50) '(100 . 100)))))
+
+(global-set-key (kbd "C-c t") 'toggle-transparency)
+
+#+END_SRC
+** Settings
+
+Typing yes or no for every request is tedious. Y or n is better.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+#+END_SRC
+
+
+Fill coulumn should be set to 79 and auto-fill-mode should be enabled by default.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(setq-default fill-column 79
+              auto-fill-function 'do-auto-fill)
+
+#+END_SRC
