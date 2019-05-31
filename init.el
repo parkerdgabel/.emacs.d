@@ -46,9 +46,7 @@ tangled, and the tangled file is compiled."
  (funcall mode t))
 
 (use-package all-the-icons
-  :ensure t
-  :config
-  (all-the-icons-install-fonts t))
+  :ensure t)
 
 (use-package neotree
   :ensure t
@@ -59,7 +57,6 @@ tangled, and the tangled file is compiled."
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-one-light t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
@@ -105,14 +102,9 @@ tangled, and the tangled file is compiled."
   :config
   (rainbow-delimiters-mode t))
 
-(set-frame-parameter (selected-frame) 'alpha '(75 . 30))
-(add-to-list 'default-frame-alist '(alpha . (75 . 30)))
-
 (use-package helm
   :ensure t
   :bind (("C-c h" . helm-command-prefix)
-         ("<tab>" . helm-execute-persistent-action)
-         ("C-z" . helm-select-action)
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x C-f" . helm-find-files)
@@ -126,12 +118,31 @@ tangled, and the tangled file is compiled."
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
   (setq helm-semantic-fuzzy-match t
-        helm-imenu-fuzzy-match    t))
+        helm-imenu-fuzzy-match    t)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action))
 
 (use-package helm-swoop
   :ensure t
+  :after helm
   :bind
   ("C-s" . helm-swoop))
+
+(use-package helm-org-rifle
+  :ensure t)
+
+(use-package helm-projectile
+  :after projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
   :ensure t
@@ -143,10 +154,15 @@ tangled, and the tangled file is compiled."
 
 (use-package org
   :ensure t
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c C-x n" . org-capture)
+   ("C-c u" . org-up-element)
+   ("C-c d" . org-down-element))
   :config
   (setq org-pretty-entities t)
-  (setq org-agenda-files '("~/gtd/gtd.org"))
-  (setq org-refile-targets '(("gtd.org")))
+  (setq org-agenda-files '("~/Dropbox/gtd/gtd.org"))
+  (setq org-refile-targets '(("~/Dropbox/gtd/gtd.org" :maxlevel . 9)))
   (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJECT(p)"
   "WAITING(w)" "APPT(a)" "HOMEWORK(h)" "EXAM(e)" "BILL(b)" "WORK(m)" "|"
   "DONE(d)" "CANCELLED(c)")))
@@ -154,6 +170,7 @@ tangled, and the tangled file is compiled."
 			    ("@home" . ?h)
 			    ("email" . ?e)
 			    ("phone" . ?p)
+                        ("finance" .?f)
 			    ("habit" . ?H)
 			    ("emacs" . ?E)
 			    ("wife" . ?w)
@@ -162,12 +179,12 @@ tangled, and the tangled file is compiled."
 			    ("750words" . ?7)))
   (setq org-capture-templates '(
                                 ("t" "Task" entry
-                                 (file+headline "~/gtd/gtd.org" "Tasks")
+                                 (file+headline "~/Dropbox/gtd/gtd.org" "Tasks")
                                  "* TODO %i%?")
                                 ("a" "Appointment" entry
-				 (file+headline "~/gtd/tickler.org" "Appointments")
+				 (file+headline "~/Dropbox/gtd/gtd.org" "Appointments")
 				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
-  (org-indent-mode t))
+  (setq org-agenda-span 'day))
 
 (use-package org-journal
   :ensure t)
@@ -177,7 +194,40 @@ tangled, and the tangled file is compiled."
   :config
   (org-super-agenda-mode t)
   (setq org-super-agenda-groups
-        (quote ((:name "Appointments" :todo "APPT" :time-grid t)))))
+        (quote ((:name "Appointments" :todo "APPT")
+                (:name "Homework" :todo "HOMEWORK")
+                (:name "Exams" :todo "EXAM")
+                (:name "Projects" :todo "PROJECT")
+                (:name "Next Actions" :todo "NEXT" )
+                (:name "Waiting" :todo "WAITING")
+                (:name "Financial" :tag "finance")))))
+
+(use-package org-bullets
+  :ensure t)
+
+(use-package org-noter
+    :after org
+    :ensure t
+    :config (setq org-noter-default-notes-file-names '("notes.org")
+                  org-noter-notes-search-path '("~/Dropbox/Books")
+                  org-noter-separate-notes-from-heading t))
+
+(defun org-mode-hook-setup ()
+  (make-local-variable 'company-backends)
+  (add-to-list 'company-backends 'company-dabbrev)
+  (add-to-list 'company-backends 'company-ispell)
+  (org-bullets-mode t)
+  (org-indent-mode t))
+
+(add-hook 'org-mode-hook 'org-mode-hook-setup)
+
+(use-package writeroom-mode
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode t))
 
 (use-package smartparens
   :ensure t
@@ -187,10 +237,68 @@ tangled, and the tangled file is compiled."
    ("C-M-a" . sp-beginning-of-sexp)
    ("C-M-e" . sp-end-of-sexp)
    ("C-M-n" . sp-next-sexp)
-   ("C-M-p" . sp-previous-sexp))
+   ("C-M-p" . sp-previous-sexp)
+   ("C-M-<backspace>" . sp-kill-sexp))
   :config
   (require 'smartparens-config)
   (smartparens-global-strict-mode t))
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
+  (add-hook 'after-init-hook 'pdf-tools-install))
+
+(use-package w3m
+  :ensure t)
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1))
+
+(use-package elfeed
+  :ensure t
+  :bind (("C-x w" . elfeed))
+  :config
+  (setq elfeed-feeds
+  '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
+    ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
+    ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
+    ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
+  ph finance))))
+
+(use-package hledger-mode
+  :ensure t
+  :preface
+  (defun hledger/next-entry ()
+    "Move to next entry and pulse."
+    (interactive)
+    (hledger-next-or-new-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  (defface hledger-warning-face
+    '((((background dark))
+       :background "Red" :foreground "White")
+      (((background light))
+       :background "Red" :foreground "White")
+      (t :inverse-video t))
+    "Face for warning"
+    :group 'hledger)
+
+  (defun hledger/prev-entry ()
+    "Move to last entry and pulse."
+    (interactive)
+    (hledger-backward-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  :bind (("C-c j" . hledger-run-command)
+         :map hledger-mode-map
+         ("C-c e" . hledger-jentry)
+         ("M-p" . hledger/prev-entry)
+         ("M-n" . hledger/next-entry))
+   :init
+   )
 
 (defun toggle-transparency ()
   (interactive)
@@ -210,3 +318,17 @@ tangled, and the tangled file is compiled."
 
 (setq-default fill-column 79
               auto-fill-function 'do-auto-fill)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

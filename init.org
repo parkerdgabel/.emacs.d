@@ -156,9 +156,7 @@ Now set UI modes that should be set.
 #+BEGIN_SRC emacs-lisp :tangle yes
 
 (use-package all-the-icons
-  :ensure t
-  :config
-  (all-the-icons-install-fonts t))
+  :ensure t)
 
 #+END_SRC
 
@@ -182,7 +180,6 @@ Now set UI modes that should be set.
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-one-light t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
@@ -271,17 +268,6 @@ programming languages but especially lisps.
 
 #+END_SRC
 
-
-Now make the frame transparent. This can be toggled by the function defined
-later in this file called toggle-transparency.
-
-#+BEGIN_SRC emacs-lisp :tangle yes
-
-(set-frame-parameter (selected-frame) 'alpha '(75 . 30))
-(add-to-list 'default-frame-alist '(alpha . (75 . 30)))
-
-#+END_SRC
-
 ** Helm
 
 [[https://github.com/emacs-helm/helm][Helm]] is a powerful completion framework for emacs.
@@ -291,8 +277,6 @@ later in this file called toggle-transparency.
 (use-package helm
   :ensure t
   :bind (("C-c h" . helm-command-prefix)
-         ("<tab>" . helm-execute-persistent-action)
-         ("C-z" . helm-select-action)
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x C-f" . helm-find-files)
@@ -306,7 +290,10 @@ later in this file called toggle-transparency.
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
   (setq helm-semantic-fuzzy-match t
-        helm-imenu-fuzzy-match    t))
+        helm-imenu-fuzzy-match    t)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action))
 
 #+END_SRC
 
@@ -316,10 +303,47 @@ later in this file called toggle-transparency.
 
 (use-package helm-swoop
   :ensure t
+  :after helm
   :bind
   ("C-s" . helm-swoop))
 
 #+END_SRC
+
+[[https://github.com/alphapapa/helm-org-rifle][Helm Org Rifle]] is very useful for navigating Org buffers.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package helm-org-rifle
+  :ensure t)
+
+#+END_SRC
+
+[[https://github.com/bbatsov/helm-projectile][Helm-Projectile]] is a helm interface for [[https://github.com/bbatsov/projectile][Projectile]].
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package helm-projectile
+  :after projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
+#+END_SRC
+
+** Projectile
+
+[[https://github.com/bbatsov/projectile][Projectile]] is a powerful project management tool for Emacs.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+#+END_SRC
+
 ** Company
 
 [[http://company-mode.github.io/][Company]] is an excellent in-buffer completion framework.
@@ -335,6 +359,7 @@ later in this file called toggle-transparency.
   (setq company-show-numbers t))
 
 #+END_SRC
+
 ** Org
 
 [[https://orgmode.org/][Org-mode]] is amazing. It is an extrodinarily powerful task manager and note
@@ -344,10 +369,15 @@ taking software. This is my set up for Getting Things Done.
 
 (use-package org
   :ensure t
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c C-x n" . org-capture)
+   ("C-c u" . org-up-element)
+   ("C-c d" . org-down-element))
   :config
   (setq org-pretty-entities t)
-  (setq org-agenda-files '("~/gtd/gtd.org"))
-  (setq org-refile-targets '(("gtd.org")))
+  (setq org-agenda-files '("~/Dropbox/gtd/gtd.org"))
+  (setq org-refile-targets '(("~/Dropbox/gtd/gtd.org" :maxlevel . 9)))
   (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJECT(p)"
   "WAITING(w)" "APPT(a)" "HOMEWORK(h)" "EXAM(e)" "BILL(b)" "WORK(m)" "|"
   "DONE(d)" "CANCELLED(c)")))
@@ -355,6 +385,7 @@ taking software. This is my set up for Getting Things Done.
 			    ("@home" . ?h)
 			    ("email" . ?e)
 			    ("phone" . ?p)
+                        ("finance" .?f)
 			    ("habit" . ?H)
 			    ("emacs" . ?E)
 			    ("wife" . ?w)
@@ -363,12 +394,12 @@ taking software. This is my set up for Getting Things Done.
 			    ("750words" . ?7)))
   (setq org-capture-templates '(
                                 ("t" "Task" entry
-                                 (file+headline "~/gtd/gtd.org" "Tasks")
+                                 (file+headline "~/Dropbox/gtd/gtd.org" "Tasks")
                                  "* TODO %i%?")
                                 ("a" "Appointment" entry
-				 (file+headline "~/gtd/tickler.org" "Appointments")
+				 (file+headline "~/Dropbox/gtd/gtd.org" "Appointments")
 				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
-  (org-indent-mode t))
+  (setq org-agenda-span 'day))
 
 #+END_SRC
 
@@ -390,10 +421,73 @@ taking software. This is my set up for Getting Things Done.
   :config
   (org-super-agenda-mode t)
   (setq org-super-agenda-groups
-        (quote ((:name "Appointments" :todo "APPT" :time-grid t)))))
+        (quote ((:name "Appointments" :todo "APPT")
+                (:name "Homework" :todo "HOMEWORK")
+                (:name "Exams" :todo "EXAM")
+                (:name "Projects" :todo "PROJECT")
+                (:name "Next Actions" :todo "NEXT" )
+                (:name "Waiting" :todo "WAITING")
+                (:name "Financial" :tag "finance")))))
 
 #+END_SRC
+
+[[https://github.com/sabof/org-bullets][Org-Bullets]] is a good visual enhancement for Org files.
+
+#+BEGIN_SRC emacs-lisp :tangle yes 
+
+(use-package org-bullets
+  :ensure t)
+#+END_SRC
+
+[[https://github.com/weirdNox/org-noter][Org-noter]] is a useful way to organize pdf annotations.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package org-noter
+    :after org
+    :ensure t
+    :config (setq org-noter-default-notes-file-names '("notes.org")
+                  org-noter-notes-search-path '("~/Dropbox/Books")
+                  org-noter-separate-notes-from-heading t))
+
+#+END_SRC
+The org-mode hook should be modified the way I would like it to be.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(defun org-mode-hook-setup ()
+  (make-local-variable 'company-backends)
+  (add-to-list 'company-backends 'company-dabbrev)
+  (add-to-list 'company-backends 'company-ispell)
+  (org-bullets-mode t)
+  (org-indent-mode t))
+
+(add-hook 'org-mode-hook 'org-mode-hook-setup)
+
+#+END_SRC
+
+** Writing
+
+Emacs isn't just for programming! It is an amazing general purpose text editor
+that is fully capable of serving any of the common writing needs.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package writeroom-mode
+  :ensure t)
+
+#+END_SRC
+
 ** Utilities
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode t))
+
+#+END_SRC
 
 [[https://github.com/Fuco1/smartparens][Smartparens]] is an indispensible tool for any programming language.
 
@@ -407,12 +501,100 @@ taking software. This is my set up for Getting Things Done.
    ("C-M-a" . sp-beginning-of-sexp)
    ("C-M-e" . sp-end-of-sexp)
    ("C-M-n" . sp-next-sexp)
-   ("C-M-p" . sp-previous-sexp))
+   ("C-M-p" . sp-previous-sexp)
+   ("C-M-<backspace>" . sp-kill-sexp))
   :config
   (require 'smartparens-config)
   (smartparens-global-strict-mode t))
 
 #+END_SRC
+
+[[https://github.com/politza/pdf-tools][Pdf-tools]] is the best way to view pdf files in Emacs.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
+  (add-hook 'after-init-hook 'pdf-tools-install))
+
+#+END_SRC
+
+[[http://w3m.sourceforge.net/][w3m]] is a text based browsing tool.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package w3m
+  :ensure t)
+
+#+END_SRC
+
+[[https://github.com/Malabarba/aggressive-indent-mode][Aggressive Indent]] is helpful to keep code properly indented.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1))
+
+#+END_SRC
+
+[[https://github.com/skeeto/elfeed][Elfeed]] is a flexible, text based rss feed manager for Emacs.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package elfeed
+  :ensure t
+  :bind (("C-x w" . elfeed))
+  :config
+  (setq elfeed-feeds
+  '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
+    ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
+    ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
+    ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
+  ph finance))))
+
+#+END_SRC
+
+[[https://github.com/narendraj9/hledger-mode][Hledger-mode]] is a major mode for hledger.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package hledger-mode
+  :ensure t
+  :preface
+  (defun hledger/next-entry ()
+    "Move to next entry and pulse."
+    (interactive)
+    (hledger-next-or-new-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  (defface hledger-warning-face
+    '((((background dark))
+       :background "Red" :foreground "White")
+      (((background light))
+       :background "Red" :foreground "White")
+      (t :inverse-video t))
+    "Face for warning"
+    :group 'hledger)
+
+  (defun hledger/prev-entry ()
+    "Move to last entry and pulse."
+    (interactive)
+    (hledger-backward-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  :bind (("C-c j" . hledger-run-command)
+         :map hledger-mode-map
+         ("C-c e" . hledger-jentry)
+         ("M-p" . hledger/prev-entry)
+         ("M-n" . hledger/next-entry))
+   :init
+   )
+#+END_SRC
+
 ** User-Defined Functions
 
 This section is for any functions that the user would like to define.
@@ -434,6 +616,7 @@ This section is for any functions that the user would like to define.
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 #+END_SRC
+
 ** Settings
 
 Typing yes or no for every request is tedious. Y or n is better.
@@ -453,3 +636,4 @@ Fill coulumn should be set to 79 and auto-fill-mode should be enabled by default
               auto-fill-function 'do-auto-fill)
 
 #+END_SRC
+

@@ -46,9 +46,7 @@ tangled, and the tangled file is compiled."
  (funcall mode t))
 
 (use-package all-the-icons
-  :ensure t
-  :config
-  (all-the-icons-install-fonts t))
+  :ensure t)
 
 (use-package neotree
   :ensure t
@@ -59,7 +57,6 @@ tangled, and the tangled file is compiled."
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-one-light t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
@@ -105,14 +102,9 @@ tangled, and the tangled file is compiled."
   :config
   (rainbow-delimiters-mode t))
 
-(set-frame-parameter (selected-frame) 'alpha '(75 . 30))
-(add-to-list 'default-frame-alist '(alpha . (75 . 30)))
-
 (use-package helm
   :ensure t
   :bind (("C-c h" . helm-command-prefix)
-         ("<tab>" . helm-execute-persistent-action)
-         ("C-z" . helm-select-action)
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x C-f" . helm-find-files)
@@ -126,12 +118,31 @@ tangled, and the tangled file is compiled."
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
   (setq helm-semantic-fuzzy-match t
-        helm-imenu-fuzzy-match    t))
+        helm-imenu-fuzzy-match    t)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action))
 
 (use-package helm-swoop
   :ensure t
+  :after helm
   :bind
   ("C-s" . helm-swoop))
+
+(use-package helm-org-rifle
+  :ensure t)
+
+(use-package helm-projectile
+  :after projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
   :ensure t
@@ -143,10 +154,13 @@ tangled, and the tangled file is compiled."
 
 (use-package org
   :ensure t
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture))
   :config
   (setq org-pretty-entities t)
   (setq org-agenda-files '("~/gtd/gtd.org"))
-  (setq org-refile-targets '(("gtd.org")))
+  (setq org-refile-targets '(("~/gtd/gtd.org" :maxlevel . 9)))
   (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJECT(p)"
   "WAITING(w)" "APPT(a)" "HOMEWORK(h)" "EXAM(e)" "BILL(b)" "WORK(m)" "|"
   "DONE(d)" "CANCELLED(c)")))
@@ -154,6 +168,7 @@ tangled, and the tangled file is compiled."
 			    ("@home" . ?h)
 			    ("email" . ?e)
 			    ("phone" . ?p)
+                        ("finance" .?f)
 			    ("habit" . ?H)
 			    ("emacs" . ?E)
 			    ("wife" . ?w)
@@ -165,9 +180,9 @@ tangled, and the tangled file is compiled."
                                  (file+headline "~/gtd/gtd.org" "Tasks")
                                  "* TODO %i%?")
                                 ("a" "Appointment" entry
-				 (file+headline "~/gtd/tickler.org" "Appointments")
+				 (file+headline "~/gtd/gtd.org" "Appointments")
 				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
-  (org-indent-mode t))
+  (setq org-agenda-span 'day))
 
 (use-package org-journal
   :ensure t)
@@ -175,14 +190,60 @@ tangled, and the tangled file is compiled."
 (use-package org-super-agenda
   :ensure t
   :config
+  (org-super-agenda-mode t)
   (setq org-super-agenda-groups
-        (quote ((:name "Today" :date today :time-grid t)))))
+        (quote ((:name "Appointments" :todo "APPT")
+                (:name "Homework" :todo "HOMEWORK")
+                (:name "Exams" :todo "EXAM")
+                (:name "Projects" :todo "PROJECT")
+                (:name "Next Actions" :todo "NEXT" )
+                (:name "Waiting" :todo "WAITING")
+                (:name "Financial" :tag "finance")))))
+
+(use-package org-bullets
+  :ensure t)
+
+(defun org-mode-hook-setup ()
+  (make-local-variable 'company-backends)
+  (add-to-list 'company-backends 'company-dabbrev)
+  (add-to-list 'company-backends 'company-ispell)
+  (org-bullets-mode t)
+  (org-indent-mode t))
+
+(add-hook 'org-mode-hook 'org-mode-hook-setup)
+
+(use-package writeroom-mode
+  :ensure t)
 
 (use-package smartparens
   :ensure t
+  :bind
+  (("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+   ("C-M-a" . sp-beginning-of-sexp)
+   ("C-M-e" . sp-end-of-sexp)
+   ("C-M-n" . sp-next-sexp)
+   ("C-M-p" . sp-previous-sexp)
+   ("C-M-<backspace>" . sp-kill-sexp))
   :config
   (require 'smartparens-config)
   (smartparens-global-strict-mode t))
+
+n(use-package pdf-tools
+  :ensure t
+  :config
+  (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
+  (add-hook 'after-init-hook 'pdf-tools-install))
+
+(use-package w3m
+  :ensure t)
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1))
+
+(use-package geeknote)
 
 (defun toggle-transparency ()
   (interactive)
@@ -202,3 +263,20 @@ tangled, and the tangled file is compiled."
 
 (setq-default fill-column 79
               auto-fill-function 'do-auto-fill)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("cd736a63aa586be066d5a1f0e51179239fe70e16a9f18991f6f5d99732cabb32" default)))
+ '(package-selected-packages
+   (quote
+    (flycheck writeroom-mode which-key w3m use-package smartparens rainbow-delimiters pdf-tools org-super-agenda org-journal org-bullets neotree helm-swoop helm-projectile helm-org-rifle doom-themes doom-modeline django-theme dimmer dashboard company beacon aggressive-indent))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
