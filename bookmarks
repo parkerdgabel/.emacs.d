@@ -9,9 +9,9 @@
  (position . 225))
 ("org-refile-last-stored"
  (filename . "~/Dropbox/gtd/gtd.org")
- (front-context-string . "** TODO Deposit ")
- (rear-context-string . "T:   0:30\n:END:\n")
- (position . 904))
+ (front-context-string . "*** TODO Control")
+ (rear-context-string . "staurant to try\n")
+ (position . 3528))
 ("org-capture-last-stored"
  (filename . "~/Dropbox/gtd/gtd.org")
  (front-context-string . "** TODO Control ")

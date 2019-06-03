@@ -517,7 +517,8 @@ that is fully capable of serving any of the common writing needs.
   :ensure t
   :config
   (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
-  (add-hook 'after-init-hook 'pdf-tools-install))
+  (add-hook 'after-init-hook 'pdf-tools-install)
+  (setq pdf-annot-activate-created-annotations t))
 
 #+END_SRC
 
@@ -552,6 +553,7 @@ that is fully capable of serving any of the common writing needs.
   (setq elfeed-feeds
   '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
     ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
+    ("http://rss.cnn.com/rss/money_pf.rss" cnn finance)
     ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
     ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
   ph finance))))

@@ -247,7 +247,8 @@ tangled, and the tangled file is compiled."
   :ensure t
   :config
   (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
-  (add-hook 'after-init-hook 'pdf-tools-install))
+  (add-hook 'after-init-hook 'pdf-tools-install)
+  (setq pdf-annot-activate-created-annotations t))
 
 (use-package w3m
   :ensure t)
@@ -264,6 +265,7 @@ tangled, and the tangled file is compiled."
   (setq elfeed-feeds
   '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
     ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
+    ("http://rss.cnn.com/rss/money_pf.rss" cnn finance)
     ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
     ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
   ph finance))))
@@ -325,7 +327,7 @@ tangled, and the tangled file is compiled."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" default))))
+    ("a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
