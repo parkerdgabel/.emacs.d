@@ -1,1 +1,13 @@
 touch init.el
+conda activate hy
+cd $HOME/ 
+mv ./Downloads/clojurescript-unraveled.pdf ./Documents/ProgrammingBooks/Clojure/
+ls
+(+ 1 1)
+ls
+cd ./Dropbox/Books/Fiction/
+ls
+mkdir ./SmallConsequences
+man cp
+cp -R $HOME/.emacs.d ../../
+ls ../../.emacs.d

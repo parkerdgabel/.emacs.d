@@ -45,6 +45,8 @@ tangled, and the tangled file is compiled."
            display-battery-mode))
  (funcall mode t))
 
+(setq-default cursor-type 'bar)
+
 (use-package all-the-icons
   :ensure t)
 
@@ -81,29 +83,42 @@ tangled, and the tangled file is compiled."
   (setq dashboard-set-file-icons t)
   (setq dashboard-set-init-info t))
 
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'visual-line-mode)
+  (diminish 'auto-fill-mode)
+)
+
 (use-package beacon
+  :diminish beacon-mode
   :ensure t)
 
 (beacon-mode t)
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-mode 1)
   (which-key-setup-side-window-right-bottom))
 
 (use-package dimmer
   :ensure t
+  :diminish dimmer-mode
   :config
   (dimmer-mode t))
 
 (use-package rainbow-delimiters
   :ensure t
+  :diminish rainbow-delimiters-mode
   :config
+  (add-hook 'prog-mode-hook #'rainbow-delimeters-mode)
   (rainbow-delimiters-mode t))
 
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :bind (("C-c h" . helm-command-prefix)
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
@@ -114,6 +129,7 @@ tangled, and the tangled file is compiled."
   (require 'helm-config)
   (helm-autoresize-mode t)
   (helm-mode t)
+  (setq helm-split-window-in-side-p t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
@@ -140,23 +156,31 @@ tangled, and the tangled file is compiled."
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   (projectile-mode t)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
   :ensure t
+  :diminish company-mode
   :config
   (global-company-mode t)
   (setq company-idle-delay 0.2)
   (setq company-minimum-prefix-length 1)
   (setq company-show-numbers t))
 
+(use-package company-quickhelp
+  :ensure t
+  :diminish company-quickhelp-mode
+  :config
+  (company-quickhelp-mode)
+  (define-key company-active-map (kbd "C-c h") 'company-quickhelp-manual-begin))
+
 (use-package org
   :ensure t
   :bind
   (("C-c a" . org-agenda)
-   ("C-c C-x n" . org-capture)
    ("C-c u" . org-up-element)
    ("C-c d" . org-down-element))
   :config
@@ -177,17 +201,13 @@ tangled, and the tangled file is compiled."
 			    ("personal" . ?P)
 			    ("outcome" . ?o)
 			    ("750words" . ?7)))
-  (setq org-capture-templates '(
-                                ("t" "Task" entry
-                                 (file+headline "~/Dropbox/gtd/gtd.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("a" "Appointment" entry
-				 (file+headline "~/Dropbox/gtd/gtd.org" "Appointments")
-				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
+  (setq org-capture-templates '(("t" "Task" entry (file+headline "~/Dropbox/gtd/gtd.org" "Tasks") "* TODO %i%?"))) 
   (setq org-agenda-span 'day))
 
 (use-package org-journal
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-journal-dir "~/Dropbox/Journal"))
 
 (use-package org-super-agenda
   :ensure t
@@ -205,42 +225,54 @@ tangled, and the tangled file is compiled."
 (use-package org-bullets
   :ensure t)
 
-(use-package org-noter
-    :after org
-    :ensure t
-    :config (setq org-noter-default-notes-file-names '("notes.org")
-                  org-noter-notes-search-path '("~/Dropbox/Books")
-                  org-noter-separate-notes-from-heading t))
-
 (defun org-mode-hook-setup ()
   (make-local-variable 'company-backends)
-  (add-to-list 'company-backends 'company-dabbrev)
-  (add-to-list 'company-backends 'company-ispell)
+  (push 'company-dabbrev company-backends)
+  (push 'company-ispell company-backends)
+  (setq fill-column 80)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
   (org-bullets-mode t)
   (org-indent-mode t))
 
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
 
+(use-package hy-mode
+  :ensure t
+  :init
+  (defun hy-mode-hook-setup ()
+    (make-local-variable (quote company-backends))
+    (add-to-list (quote company-backends) (quote company-hy))
+    (run-jedhy))
+  (add-hook (quote hy-mode-hook) (quote hy-mode-hook-setup))
+  (add-hook (quote inferior-hy-mode-hook) (quote hy-mode-hook-setup)))
+
 (use-package writeroom-mode
   :ensure t)
 
+(use-package eshell-toggle
+  :custom
+  (eshell-toggle-size-fraction 3)
+  (eshell-toggle-use-projectile-root t)
+  (eshell-toggle-run-command nil)
+  (eshell-toggle-init-function #'eshell-toggle-init-eshell)
+   :bind
+  ("C-`" . eshell-toggle))
+
 (use-package flycheck
   :ensure t
+  :diminish global-flycheck-mode flycheck-mode flyspell-mode
   :config
   (global-flycheck-mode t))
 
 (use-package smartparens
   :ensure t
-  :bind
-  (("C-M-f" . sp-forward-sexp)
-   ("C-M-b" . sp-backward-sexp)
-   ("C-M-a" . sp-beginning-of-sexp)
-   ("C-M-e" . sp-end-of-sexp)
-   ("C-M-n" . sp-next-sexp)
-   ("C-M-p" . sp-previous-sexp)
-   ("C-M-<backspace>" . sp-kill-sexp))
+  :diminish smartparens-global-strict-mode smartparens-mode
   :config
   (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
   (smartparens-global-strict-mode t))
 
 (use-package pdf-tools
@@ -263,12 +295,7 @@ tangled, and the tangled file is compiled."
   :bind (("C-x w" . elfeed))
   :config
   (setq elfeed-feeds
-  '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
-    ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
-    ("http://rss.cnn.com/rss/money_pf.rss" cnn finance)
-    ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
-    ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
-  ph finance))))
+  '()))
 
 (use-package hledger-mode
   :ensure t
@@ -318,19 +345,4 @@ tangled, and the tangled file is compiled."
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq-default fill-column 79
-              auto-fill-function 'do-auto-fill)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("a3fa4abaf08cc169b61dea8f6df1bbe4123ec1d2afeb01c17e11fdc31fc66379" "10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+

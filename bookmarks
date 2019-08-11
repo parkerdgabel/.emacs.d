@@ -9,12 +9,12 @@
  (position . 225))
 ("org-refile-last-stored"
  (filename . "~/Dropbox/gtd/gtd.org")
- (front-context-string . "*** TODO Control")
- (rear-context-string . "staurant to try\n")
- (position . 3528))
+ (front-context-string . "** TODO Call TEP")
+ (rear-context-string . "ies vaccination\n")
+ (position . 741))
 ("org-capture-last-stored"
  (filename . "~/Dropbox/gtd/gtd.org")
- (front-context-string . "** TODO Control ")
+ (front-context-string . "** TODO Call TEP")
  (rear-context-string . "RY: Tasks\n:END:\n")
  (position . 45))
 )

@@ -45,6 +45,8 @@ tangled, and the tangled file is compiled."
            display-battery-mode))
  (funcall mode t))
 
+(setq-default cursor-type 'bar)
+
 (use-package all-the-icons
   :ensure t)
 
@@ -114,6 +116,7 @@ tangled, and the tangled file is compiled."
   (require 'helm-config)
   (helm-autoresize-mode t)
   (helm-mode t)
+  (setq helm-split-window-in-side-p t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
@@ -152,15 +155,22 @@ tangled, and the tangled file is compiled."
   (setq company-minimum-prefix-length 1)
   (setq company-show-numbers t))
 
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode)
+  (define-key company-active-map (kbd "C-c h") 'company-quickhelp-manual-begin))
+
 (use-package org
   :ensure t
   :bind
   (("C-c a" . org-agenda)
-   ("C-c c" . org-capture))
+   ("C-c u" . org-up-element)
+   ("C-c d" . org-down-element))
   :config
   (setq org-pretty-entities t)
-  (setq org-agenda-files '("~/gtd/gtd.org"))
-  (setq org-refile-targets '(("~/gtd/gtd.org" :maxlevel . 9)))
+  (setq org-agenda-files '("~/Dropbox/gtd/gtd.org"))
+  (setq org-refile-targets '(("~/Dropbox/gtd/gtd.org" :maxlevel . 9)))
   (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJECT(p)"
   "WAITING(w)" "APPT(a)" "HOMEWORK(h)" "EXAM(e)" "BILL(b)" "WORK(m)" "|"
   "DONE(d)" "CANCELLED(c)")))
@@ -175,17 +185,13 @@ tangled, and the tangled file is compiled."
 			    ("personal" . ?P)
 			    ("outcome" . ?o)
 			    ("750words" . ?7)))
-  (setq org-capture-templates '(
-                                ("t" "Task" entry
-                                 (file+headline "~/gtd/gtd.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("a" "Appointment" entry
-				 (file+headline "~/gtd/gtd.org" "Appointments")
-				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
+  (setq org-capture-templates '(("t" "Task" entry (file+headline "~/Dropbox/gtd/gtd.org" "Tasks") "* TODO %i%?"))) 
   (setq org-agenda-span 'day))
 
 (use-package org-journal
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-journal-dir "~/Dropbox/Journal"))
 
 (use-package org-super-agenda
   :ensure t
@@ -205,35 +211,49 @@ tangled, and the tangled file is compiled."
 
 (defun org-mode-hook-setup ()
   (make-local-variable 'company-backends)
-  (add-to-list 'company-backends 'company-dabbrev)
-  (add-to-list 'company-backends 'company-ispell)
+  (push 'company-dabbrev company-backends)
+  (push 'company-ispell company-backends)
+  (setq fill-column 80)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
   (org-bullets-mode t)
   (org-indent-mode t))
 
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
 
+(use-package hy-mode
+  :ensure t
+  :init
+  (defun hy-mode-hook-setup ()
+    (make-local-variable (quote company-backends))
+    (add-to-list (quote company-backends) (quote company-hy))
+    (run-jedhy))
+  (add-hook (quote hy-mode-hook) (quote hy-mode-hook-setup))
+  (add-hook (quote inferior-hy-mode-hook) (quote hy-mode-hook-setup)))
+
 (use-package writeroom-mode
   :ensure t)
 
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode t))
+
 (use-package smartparens
   :ensure t
-  :bind
-  (("C-M-f" . sp-forward-sexp)
-   ("C-M-b" . sp-backward-sexp)
-   ("C-M-a" . sp-beginning-of-sexp)
-   ("C-M-e" . sp-end-of-sexp)
-   ("C-M-n" . sp-next-sexp)
-   ("C-M-p" . sp-previous-sexp)
-   ("C-M-<backspace>" . sp-kill-sexp))
   :config
   (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
   (smartparens-global-strict-mode t))
 
-n(use-package pdf-tools
+(use-package pdf-tools
   :ensure t
   :config
   (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
-  (add-hook 'after-init-hook 'pdf-tools-install))
+  (add-hook 'after-init-hook 'pdf-tools-install)
+  (setq pdf-annot-activate-created-annotations t))
 
 (use-package w3m
   :ensure t)
@@ -243,7 +263,44 @@ n(use-package pdf-tools
   :config
   (global-aggressive-indent-mode 1))
 
-(use-package geeknote)
+(use-package elfeed
+  :ensure t
+  :bind (("C-x w" . elfeed))
+  :config
+  (setq elfeed-feeds
+  '()))
+
+(use-package hledger-mode
+  :ensure t
+  :preface
+  (defun hledger/next-entry ()
+    "Move to next entry and pulse."
+    (interactive)
+    (hledger-next-or-new-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  (defface hledger-warning-face
+    '((((background dark))
+       :background "Red" :foreground "White")
+      (((background light))
+       :background "Red" :foreground "White")
+      (t :inverse-video t))
+    "Face for warning"
+    :group 'hledger)
+
+  (defun hledger/prev-entry ()
+    "Move to last entry and pulse."
+    (interactive)
+    (hledger-backward-entry)
+    (hledger-pulse-momentary-current-entry))
+
+  :bind (("C-c j" . hledger-run-command)
+         :map hledger-mode-map
+         ("C-c e" . hledger-jentry)
+         ("M-p" . hledger/prev-entry)
+         ("M-n" . hledger/next-entry))
+   :init
+   )
 
 (defun toggle-transparency ()
   (interactive)
@@ -261,22 +318,4 @@ n(use-package pdf-tools
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq-default fill-column 79
-              auto-fill-function 'do-auto-fill)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("cd736a63aa586be066d5a1f0e51179239fe70e16a9f18991f6f5d99732cabb32" default)))
- '(package-selected-packages
-   (quote
-    (flycheck writeroom-mode which-key w3m use-package smartparens rainbow-delimiters pdf-tools org-super-agenda org-journal org-bullets neotree helm-swoop helm-projectile helm-org-rifle doom-themes doom-modeline django-theme dimmer dashboard company beacon aggressive-indent))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+

@@ -150,7 +150,13 @@ Now set UI modes that should be set.
 
 #+END_SRC
 
+I want to use a line cursor.
 
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(setq-default cursor-type 'bar)
+
+#+END_SRC
 [[https://github.com/domtronn/all-the-icons.el][All-the-icons]] is needed for the doom-modeline. All-the-icons fonts must be installed after all-the icons is loaded.
 
 #+BEGIN_SRC emacs-lisp :tangle yes
@@ -219,12 +225,24 @@ Now set UI modes that should be set.
 
 #+END_SRC
 
+Diminish is used to reduce mode line clutter
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'visual-line-mode)
+  (diminish 'auto-fill-mode)
+)
+#+END_SRC
 
 [[https://github.com/Malabarba/beacon][Beacon]] is helpful to keep track of the point when changing buffers.
 
 #+BEGIN_SRC emacs-lisp :tangle yes
 
 (use-package beacon
+  :diminish beacon-mode
   :ensure t)
 
 (beacon-mode t)
@@ -238,6 +256,7 @@ Now set UI modes that should be set.
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-mode 1)
   (which-key-setup-side-window-right-bottom))
@@ -251,6 +270,7 @@ Now set UI modes that should be set.
 
 (use-package dimmer
   :ensure t
+  :diminish dimmer-mode
   :config
   (dimmer-mode t))
 
@@ -263,7 +283,9 @@ programming languages but especially lisps.
 
 (use-package rainbow-delimiters
   :ensure t
+  :diminish rainbow-delimiters-mode
   :config
+  (add-hook 'prog-mode-hook #'rainbow-delimeters-mode)
   (rainbow-delimiters-mode t))
 
 #+END_SRC
@@ -276,6 +298,7 @@ programming languages but especially lisps.
 
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :bind (("C-c h" . helm-command-prefix)
          ("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
@@ -286,6 +309,7 @@ programming languages but especially lisps.
   (require 'helm-config)
   (helm-autoresize-mode t)
   (helm-mode t)
+  (setq helm-split-window-in-side-p t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
@@ -338,6 +362,7 @@ programming languages but especially lisps.
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   (projectile-mode t)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
@@ -352,6 +377,7 @@ programming languages but especially lisps.
 
 (use-package company
   :ensure t
+  :diminish company-mode
   :config
   (global-company-mode t)
   (setq company-idle-delay 0.2)
@@ -360,6 +386,15 @@ programming languages but especially lisps.
 
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package company-quickhelp
+  :ensure t
+  :diminish company-quickhelp-mode
+  :config
+  (company-quickhelp-mode)
+  (define-key company-active-map (kbd "C-c h") 'company-quickhelp-manual-begin))
+#+END_SRC
 ** Org
 
 [[https://orgmode.org/][Org-mode]] is amazing. It is an extrodinarily powerful task manager and note
@@ -371,7 +406,6 @@ taking software. This is my set up for Getting Things Done.
   :ensure t
   :bind
   (("C-c a" . org-agenda)
-   ("C-c C-x n" . org-capture)
    ("C-c u" . org-up-element)
    ("C-c d" . org-down-element))
   :config
@@ -392,13 +426,7 @@ taking software. This is my set up for Getting Things Done.
 			    ("personal" . ?P)
 			    ("outcome" . ?o)
 			    ("750words" . ?7)))
-  (setq org-capture-templates '(
-                                ("t" "Task" entry
-                                 (file+headline "~/Dropbox/gtd/gtd.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("a" "Appointment" entry
-				 (file+headline "~/Dropbox/gtd/gtd.org" "Appointments")
-				 "* APPT %i%? %^g \n SCHEDULED: %^T")))
+  (setq org-capture-templates '(("t" "Task" entry (file+headline "~/Dropbox/gtd/gtd.org" "Tasks") "* TODO %i%?"))) 
   (setq org-agenda-span 'day))
 
 #+END_SRC
@@ -408,7 +436,9 @@ taking software. This is my set up for Getting Things Done.
 #+BEGIN_SRC emacs-lisp :tangle yes
 
 (use-package org-journal
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-journal-dir "~/Dropbox/Journal"))
 
 #+END_SRC
 
@@ -433,7 +463,7 @@ taking software. This is my set up for Getting Things Done.
 
 [[https://github.com/sabof/org-bullets][Org-Bullets]] is a good visual enhancement for Org files.
 
-#+BEGIN_SRC emacs-lisp :tangle yes 
+#+BEGIN_SRC emacs-lisp :tangle yes
 
 (use-package org-bullets
   :ensure t)
@@ -441,7 +471,7 @@ taking software. This is my set up for Getting Things Done.
 
 [[https://github.com/weirdNox/org-noter][Org-noter]] is a useful way to organize pdf annotations.
 
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle no
 
 (use-package org-noter
     :after org
@@ -457,12 +487,33 @@ The org-mode hook should be modified the way I would like it to be.
 
 (defun org-mode-hook-setup ()
   (make-local-variable 'company-backends)
-  (add-to-list 'company-backends 'company-dabbrev)
-  (add-to-list 'company-backends 'company-ispell)
+  (push 'company-dabbrev company-backends)
+  (push 'company-ispell company-backends)
+  (setq fill-column 80)
+  (auto-fill-mode t)
+  (flyspell-mode t)
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
   (org-bullets-mode t)
   (org-indent-mode t))
 
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
+
+#+END_SRC
+** Languages
+*** Hy
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package hy-mode
+  :ensure t
+  :init
+  (defun hy-mode-hook-setup ()
+    (make-local-variable (quote company-backends))
+    (add-to-list (quote company-backends) (quote company-hy))
+    (run-jedhy))
+  (add-hook (quote hy-mode-hook) (quote hy-mode-hook-setup))
+  (add-hook (quote inferior-hy-mode-hook) (quote hy-mode-hook-setup)))
 
 #+END_SRC
 
@@ -480,10 +531,26 @@ that is fully capable of serving any of the common writing needs.
 
 ** Utilities
 
+[[https://github.com/4DA/eshell-toggle][Eshell Toggle]] is useful
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+(use-package eshell-toggle
+  :custom
+  (eshell-toggle-size-fraction 3)
+  (eshell-toggle-use-projectile-root t)
+  (eshell-toggle-run-command nil)
+  (eshell-toggle-init-function #'eshell-toggle-init-eshell)
+   :bind
+  ("C-`" . eshell-toggle))
+
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp :tangle yes
 
 (use-package flycheck
   :ensure t
+  :diminish global-flycheck-mode flycheck-mode flyspell-mode
   :config
   (global-flycheck-mode t))
 
@@ -495,16 +562,10 @@ that is fully capable of serving any of the common writing needs.
 
 (use-package smartparens
   :ensure t
-  :bind
-  (("C-M-f" . sp-forward-sexp)
-   ("C-M-b" . sp-backward-sexp)
-   ("C-M-a" . sp-beginning-of-sexp)
-   ("C-M-e" . sp-end-of-sexp)
-   ("C-M-n" . sp-next-sexp)
-   ("C-M-p" . sp-previous-sexp)
-   ("C-M-<backspace>" . sp-kill-sexp))
+  :diminish smartparens-global-strict-mode smartparens-mode
   :config
   (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
   (smartparens-global-strict-mode t))
 
 #+END_SRC
@@ -551,12 +612,7 @@ that is fully capable of serving any of the common writing needs.
   :bind (("C-x w" . elfeed))
   :config
   (setq elfeed-feeds
-  '(("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" nyt business)
-    ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" wsj markets)
-    ("http://rss.cnn.com/rss/money_pf.rss" cnn finance)
-    ("https://hbswk.hbs.edu/stories-rss.aspx" hbs business)
-    ("https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.thepennyhoarder.com%2Ffeed"
-  ph finance))))
+  '()))
 
 #+END_SRC
 
@@ -634,8 +690,6 @@ Fill coulumn should be set to 79 and auto-fill-mode should be enabled by default
 
 #+BEGIN_SRC emacs-lisp :tangle yes
 
-(setq-default fill-column 79
-              auto-fill-function 'do-auto-fill)
 
 #+END_SRC
 
