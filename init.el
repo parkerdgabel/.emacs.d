@@ -45,7 +45,7 @@ tangled, and the tangled file is compiled."
            display-battery-mode))
  (funcall mode t))
 
-(setq-default cursor-type 'bar)
+(set-fringe-mode nil)
 
 (use-package all-the-icons
   :ensure t)
@@ -64,13 +64,20 @@ tangled, and the tangled file is compiled."
   (doom-themes-org-config))
 
 (use-package doom-modeline
+      :defer t
       :ensure t
-      :hook (after-init . doom-modeline-mode)
       :config
       (setq doom-modeline-icon t)
       (setq doom-modeline-major-mode-icon t)
       (setq doom-modeline-major-mode-color-icon t)
       (setq doom-modeline-minor-modes nil))
+
+(use-package powerline
+  :ensure t)
+
+(use-package micgoline
+  :ensure t
+  :hook (after-init-hook . micgoline-load-theme))
 
 (use-package dashboard
   :ensure t
@@ -87,8 +94,7 @@ tangled, and the tangled file is compiled."
   :ensure t
   :config
   (diminish 'visual-line-mode)
-  (diminish 'auto-fill-mode)
-)
+  (diminish 'auto-fill-mode))
 
 (use-package beacon
   :diminish beacon-mode
@@ -111,10 +117,7 @@ tangled, and the tangled file is compiled."
 
 (use-package rainbow-delimiters
   :ensure t
-  :diminish rainbow-delimiters-mode
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimeters-mode)
-  (rainbow-delimiters-mode t))
+  :config)
 
 (use-package helm
   :ensure t
@@ -124,7 +127,7 @@ tangled, and the tangled file is compiled."
          ("M-y" . helm-show-kill-ring)
          ("C-x C-f" . helm-find-files)
          ("C-c o" . helm-occur)
-	 ("C-x b" . helm-mini))
+	 ("C-x C-b" . helm-mini))
   :config
   (require 'helm-config)
   (helm-autoresize-mode t)
@@ -180,9 +183,9 @@ tangled, and the tangled file is compiled."
 (use-package org
   :ensure t
   :bind
-  (("C-c a" . org-agenda)
-   ("C-c u" . org-up-element)
-   ("C-c d" . org-down-element))
+  (("C-c C-a" . org-agenda)
+   ("C-c C-u" . org-up-element)
+   ("C-c C-d" . org-down-element))
   :config
   (setq org-pretty-entities t)
   (setq org-agenda-files '("~/Dropbox/gtd/gtd.org"))
@@ -232,6 +235,7 @@ tangled, and the tangled file is compiled."
   (setq fill-column 80)
   (auto-fill-mode t)
   (flyspell-mode t)
+  (set-fringe-mode nil)
   (setq org-goto-interface 'outline-path-completion)
   (setq org-outline-path-complete-in-steps nil)
   (org-bullets-mode t)
@@ -297,37 +301,18 @@ tangled, and the tangled file is compiled."
   (setq elfeed-feeds
   '()))
 
-(use-package hledger-mode
+(use-package god-mode
   :ensure t
-  :preface
-  (defun hledger/next-entry ()
-    "Move to next entry and pulse."
-    (interactive)
-    (hledger-next-or-new-entry)
-    (hledger-pulse-momentary-current-entry))
-
-  (defface hledger-warning-face
-    '((((background dark))
-       :background "Red" :foreground "White")
-      (((background light))
-       :background "Red" :foreground "White")
-      (t :inverse-video t))
-    "Face for warning"
-    :group 'hledger)
-
-  (defun hledger/prev-entry ()
-    "Move to last entry and pulse."
-    (interactive)
-    (hledger-backward-entry)
-    (hledger-pulse-momentary-current-entry))
-
-  :bind (("C-c j" . hledger-run-command)
-         :map hledger-mode-map
-         ("C-c e" . hledger-jentry)
-         ("M-p" . hledger/prev-entry)
-         ("M-n" . hledger/next-entry))
-   :init
-   )
+  :diminish god-mode
+  :bind (("<escape>" . god-mode-all))
+  :config
+  (defun my-update-cursor ()
+     (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+(define-key god-local-mode-map (kbd "i") 'god-local-mode)
+  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+  (add-hook 'god-mode-disabled-hook 'my-update-cursor))
 
 (defun toggle-transparency ()
   (interactive)
@@ -340,9 +325,7 @@ tangled, and the tangled file is compiled."
                     ((numberp (cadr alpha)) (cadr alpha)))
               100)
          '(75 . 50) '(100 . 100)))))
-
+         
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-
