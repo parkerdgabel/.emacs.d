@@ -11,3 +11,35 @@ mkdir ./SmallConsequences
 man cp
 cp -R $HOME/.emacs.d ../../
 ls ../../.emacs.d
+rm ./init.elc 
+ls
+bundler init
+mkdir reactor_core
+cd ./reactor_core/
+bundler init
+cd ../
+rm ./reactor_core/
+rm -R ./reactor_core/
+ls
+mkdir reactor_core
+cd ./reactor_core/
+cd ../
+rm -R ./reactor_core/
+bundler gem reactor_core
+rubocop 
+(+ 145 160)
+*+ 8.5 12)
+(+ 12 8.5)
+(+ 12 8.5)
+(+ 305 613)
+(+ 20.5 42.7)
+(+ 22 56)
+(+ 918 322)
+(+ 918 161)
+(+ 918 90)
+(+ 918 322 40)
+(+ 918 322 40)
+(+ 71.7 29)
+(+ 1280 322)
+(/ 762 3)
+(/ 23 3)

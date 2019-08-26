@@ -45,7 +45,7 @@ tangled, and the tangled file is compiled."
            display-battery-mode))
  (funcall mode t))
 
-(set-fringe-mode nil)
+(set-fringe-style 0)
 
 (use-package all-the-icons
   :ensure t)
@@ -63,8 +63,12 @@ tangled, and the tangled file is compiled."
   (doom-themes-neotree-config)
   (doom-themes-org-config))
 
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-light-hard t))
+
 (use-package doom-modeline
-      :defer t
       :ensure t
       :config
       (setq doom-modeline-icon t)
@@ -73,11 +77,9 @@ tangled, and the tangled file is compiled."
       (setq doom-modeline-minor-modes nil))
 
 (use-package powerline
-  :ensure t)
-
-(use-package micgoline
   :ensure t
-  :hook (after-init-hook . micgoline-load-theme))
+  :config
+  (powerline-center-evil-theme))
 
 (use-package dashboard
   :ensure t
@@ -93,8 +95,13 @@ tangled, and the tangled file is compiled."
 (use-package diminish
   :ensure t
   :config
-  (diminish 'visual-line-mode)
-  (diminish 'auto-fill-mode))
+  (diminish 'visual-line-mode)) 
+  
+(diminish 'auto-fill-function)
+
+(diminish 'undo-tree-mode)
+
+(diminish 'org-indent-mode)
 
 (use-package beacon
   :diminish beacon-mode
@@ -117,7 +124,8 @@ tangled, and the tangled file is compiled."
 
 (use-package rainbow-delimiters
   :ensure t
-  :config)
+  :config
+  (rainbow-delimiters-mode t))
 
 (use-package helm
   :ensure t
@@ -132,7 +140,7 @@ tangled, and the tangled file is compiled."
   (require 'helm-config)
   (helm-autoresize-mode t)
   (helm-mode t)
-  (setq helm-split-window-in-side-p t)
+  (setq helm-split-window-inside-p t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t)
@@ -180,12 +188,45 @@ tangled, and the tangled file is compiled."
   (company-quickhelp-mode)
   (define-key company-active-map (kbd "C-c h") 'company-quickhelp-manual-begin))
 
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+  
+(use-package lispy
+  :ensure t
+  :hook '((emacs-lisp-mode-hook . lispy-mode)
+          (cider-mode-hook . lispy-mode)))
+
+  (use-package lispyville 
+  :after lispy 
+  :ensure t
+  :hook '((lispy-mode-hook . lispyville-mode)))
+
 (use-package org
   :ensure t
-  :bind
-  (("C-c C-a" . org-agenda)
-   ("C-c C-u" . org-up-element)
-   ("C-c C-d" . org-down-element))
+  :diminish org-mode
   :config
   (setq org-pretty-entities t)
   (setq org-agenda-files '("~/Dropbox/gtd/gtd.org"))
@@ -238,20 +279,51 @@ tangled, and the tangled file is compiled."
   (set-fringe-mode nil)
   (setq org-goto-interface 'outline-path-completion)
   (setq org-outline-path-complete-in-steps nil)
+  (setq org-src-fontify-natively t)
   (org-bullets-mode t)
   (org-indent-mode t))
 
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
 
-(use-package hy-mode
+(use-package enh-ruby-mode
+  :after (:all robe yard rubocop bundler ruby-test-mode rvm)
   :ensure t
-  :init
-  (defun hy-mode-hook-setup ()
-    (make-local-variable (quote company-backends))
-    (add-to-list (quote company-backends) (quote company-hy))
-    (run-jedhy))
-  (add-hook (quote hy-mode-hook) (quote hy-mode-hook-setup))
-  (add-hook (quote inferior-hy-mode-hook) (quote hy-mode-hook-setup)))
+  :hook '((enh-ruby-mode-hook . robe-mode)
+          (enh-ruby-mode-hook . yard-mode)
+          (enh-ruby-mode-hook . rubocop-mode)
+          (enh-ruby-mode-hook . bundler-mode)
+          (enh-ruby-mode-hook . ruby-test-mode)
+          (enh-ruby-mode-hook . rvm-mode)
+          (enh-ruby-mode-hook . my-ruby-mode-hook))
+  :config
+  (add-to-list 'auto-mode-alist
+  '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode)) 
+  (add-to-list 'interpreter-mode-alist '("pry" . enh-ruby-mode))
+  (defun my-ruby-mode-hook ()
+    (make-local-variable 'company-backends)
+    (push 'company-robe company-backends))
+)
+
+(use-package rvm)
+
+(use-package company-robe)
+
+(use-package robe
+  :after (:all inf-ruby company-robe rvm)
+  :ensure t
+  :config
+  (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
+  (rvm-activate-corresponding-ruby))
+  )
+
+(use-package rubocop
+  :ensure t)
+
+(use-package bundler
+  :ensure t)
+
+(use-package ruby-test-mode
+  :ensure t)
 
 (use-package writeroom-mode
   :ensure t)
@@ -270,14 +342,6 @@ tangled, and the tangled file is compiled."
   :diminish global-flycheck-mode flycheck-mode flyspell-mode
   :config
   (global-flycheck-mode t))
-
-(use-package smartparens
-  :ensure t
-  :diminish smartparens-global-strict-mode smartparens-mode
-  :config
-  (require 'smartparens-config)
-  (sp-use-smartparens-bindings)
-  (smartparens-global-strict-mode t))
 
 (use-package pdf-tools
   :ensure t
@@ -301,19 +365,6 @@ tangled, and the tangled file is compiled."
   (setq elfeed-feeds
   '()))
 
-(use-package god-mode
-  :ensure t
-  :diminish god-mode
-  :bind (("<escape>" . god-mode-all))
-  :config
-  (defun my-update-cursor ()
-     (setq cursor-type (if (or god-local-mode buffer-read-only)
-                        'box
-                      'bar)))
-(define-key god-local-mode-map (kbd "i") 'god-local-mode)
-  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'my-update-cursor))
-
 (defun toggle-transparency ()
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
@@ -328,4 +379,11 @@ tangled, and the tangled file is compiled."
          
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+(defun timestamp ()
+   (interactive)
+   (insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
