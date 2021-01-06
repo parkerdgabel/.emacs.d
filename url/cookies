@@ -1,0 +1,25 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '(("passportofficelocations.net"
+  [url-cookie "ezCMPCCS" "true" "Sun, 25 Jul 2021 17:40:31 GMT" "/" "passportofficelocations.net" nil]))
+)
+(setq url-cookie-secure-storage
+ '((".costco.com"
+  [url-cookie "_abck" "4A0D52C664839803445E769B55332524~-1~YAAQH/APF4gj9n9zAQAA6BsShwR84etVaudW2yzM5TbTdmyiWvBDinFUv6plpTRNdYc7iChPauJwFEQeWqrUHAfV9GotumIKEtd+Kwydc8xF5R+JgTiRlnXDN8ysH3l+VscxlhCWbwz+x8KZGEl+OCHT9O67iIbBqLb29jJw4g05ncpjvw+7Rofe3Wzrm9g8VJj587rOPFaC/IOcmWNBoTI+/f9Q+TlsdM9CEKvP/UiqA4NzwdHd6ZOy7bzxix18uRKXBqrfN+rYYIsWIlMz/Tc3M2QJb6QpfTWGfaYH5gIpWMJcxmQqIXgT~-1~-1~-1" "Sun Jul 25 17:42:57 2021 GMT" "/" ".costco.com" t])
+ ("www.wikipedia.org"
+  [url-cookie "WMF-Last-Access" "11-Oct-2020" "Thu, 12 Nov 2020 12:00:00 GMT" "/" "www.wikipedia.org" t])
+ (".wikipedia.org"
+  [url-cookie "WMF-Last-Access-Global" "11-Oct-2020" "Thu, 12 Nov 2020 12:00:00 GMT" "/" ".wikipedia.org" t])
+ ("en.wikipedia.org"
+  [url-cookie "WMF-Last-Access" "11-Oct-2020" "Thu, 12 Nov 2020 12:00:00 GMT" "/" "en.wikipedia.org" t])
+ ("github.com"
+  [url-cookie "_octo" "GH1.1.1616170986.1589845779" "Tue, 18 May 2021 23:49:39 GMT" "/" "github.com" t]
+  [url-cookie "logged_in" "no" "Tue, 18 May 2021 23:49:39 GMT" "/" "github.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
