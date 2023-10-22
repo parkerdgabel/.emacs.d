@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/emacsql/sqlite/emacsql.c

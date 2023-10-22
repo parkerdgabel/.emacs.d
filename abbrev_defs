@@ -3,10 +3,12 @@
   '(
     ("alumimun" "aluminum" nil :count 0)
     ("avoinding" "avoiding" nil :count 0)
+    ("equipement" "equipment" nil :count 0)
     ("intermitently" "intermittently" nil :count 0)
+    ("remeber" "remember" nil :count 0)
     ("seperated" "separated" nil :count 0)
     ("somehting" "something" nil :count 0)
-    ("the" "the" nil :count 321)
+    ("the" "the" nil :count 422)
    ))
 
 (define-abbrev-table 'org-mode-abbrev-table

@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/adoc-mode/adoc-mode.el

@@ -1,0 +1,51 @@
+;; Object semanticdb-project-database-file-46855796
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-46855796"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-43f95386"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("nnheader" include nil nil [893 912])
+            ("cl-lib" include nil nil [932 949])
+            ("nnoo-definition-alist" variable nil nil [952 986])
+            ("nnoo-state-alist" variable nil nil [987 1016])
+            ("nnoo-parent-backend" variable nil nil [1017 1049])
+            ("defvoo" function (:arguments ("var" "init" "doc" "map")) nil [1051 1472])
+            ("deffoo" function (:arguments ("func" "args" "forms")) nil [1474 1747])
+            ("noo--defalias" function (:arguments ("fun" "val")) nil [1749 1838])
+            ("nnoo-register-function" function (:arguments ("func")) nil [1840 2093])
+            ("nnoo-declare" function (:arguments ("backend" "parents")) nil [2095 2563])
+            ("nnoo-parents" function (:arguments ("backend")) nil [2565 2643])
+            ("nnoo-variables" function (:arguments ("backend")) nil [2645 2725])
+            ("nnoo-functions" function (:arguments ("backend")) nil [2727 2807])
+            ("nnoo-import" function (:arguments ("backend" "imports")) nil [2809 2917])
+            ("nnoo-import-1" function (:arguments ("backend" "imports")) nil [2919 3359])
+            ("nnoo-parent-function" function (:arguments ("backend" "function" "args")) nil [3361 3851])
+            ("nnoo-execute" function (:arguments ("backend" "function" "args")) nil [3853 4384])
+            ("nnoo-map-functions" function (:arguments ("backend" "maps")) nil [4386 4927])
+            ("nnoo-backend" function (:arguments ("symbol")) nil [4929 5071])
+            ("nnoo-rest-symbol" function (:arguments ("symbol")) nil [5073 5212])
+            ("nnoo-symbol" function (:arguments ("backend" "symbol")) nil [5214 5293])
+            ("nnoo-define" function (:arguments ("var" "map")) nil [5295 5785])
+            ("nnoo-change-server" function (:arguments ("backend" "server" "defs")) nil [5787 7136])
+            ("nnoo-push-server" function (:arguments ("backend" "current")) nil [7138 7924])
+            ("nnoo-current-server-p" function (:arguments ("backend" "server")) nil [7926 8103])
+            ("nnoo-current-server" function (:arguments ("backend")) nil [8105 8184])
+            ("nnoo-close-server" function (:arguments ("backend" "server")) nil [8186 8562])
+            ("nnoo-close" function (:arguments ("backend")) nil [8564 8686])
+            ("nnoo-status-message" function (:arguments ("backend" "_server")) nil [8688 8765])
+            ("nnoo-server-opened" function (:arguments ("backend" "server")) nil [8767 8899])
+            ("nnoo-define-basics" function (:arguments ("backend")) nil [8901 10213])
+            ("nnoo-define-skeleton" function (:arguments ("backend")) nil [10215 10424])
+            ("nnoo-define-skeleton-1" function (:arguments ("backend")) nil [10426 10839])
+            ("nnoo-set" function (:arguments ("server" "args")) nil [10841 11201])
+            ("nnoo" package nil nil [11203 11218]))          
+      :file "nnoo.el.gz"
+      :pointmax 11242
+      :fsize 3401
+      :lastmodtime '(25521 36546 0 0)
+      :unmatched-syntax '((close-paren 949 . 950) (symbol 914 . 931) (open-paren 913 . 914))))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!gnus!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -1,0 +1,34 @@
+;; Object semanticdb-project-database-file-ca8a7c6e
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-ca8a7c6e"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-ca8a7cb2"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("avy-org-same-level" function
+               (:user-visible-flag t
+                :arguments ("all"))
+                nil [1 628])
+            ("avy-org-parent-level" function
+               (:user-visible-flag t
+                :arguments ("all"))
+                nil [630 1397])
+            ("avy-org-child-level" function
+               (:user-visible-flag t
+                :arguments ("all"))
+                nil [1399 2238])
+            ("avy-org-goto-level" function
+               (:user-visible-flag t
+                :arguments ("num"))
+                nil [2240 2527])
+            ("avy-goto-word-crt-line" function (:user-visible-flag t) nil [2529 2730])
+            ("custom-avy" package nil nil [2913 2934]))          
+      :file "custom-avy.el"
+      :pointmax 2935
+      :fsize 2934
+      :lastmodtime '(25879 16146 357911 591000)
+      :unmatched-syntax nil))
+  :file "!Users!parkergabel!.emacs.d!lisp!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

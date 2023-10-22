@@ -1,0 +1,352 @@
+;; Object semanticdb-project-database-file-bc10d1c8
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-bc10d1c8"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-4f83e5ae"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("declare-function" code nil nil [1143 1198])
+            ("diff" customgroup (:user-visible-flag t) nil [1200 1268])
+            ("diff-switches" variable (:default-value (purecopy "-u")) nil [1285 1654])
+            ("diff-command" variable (:default-value (purecopy "diff")) nil [1671 1765])
+            ("diff-entire-buffers" variable (:default-value t) nil [1767 1958])
+            ("diff-switches" function nil nil [1992 2185])
+            ("diff-sentinel" function (:arguments ("code" "old-temp-file" "new-temp-file")) nil [2187 2898])
+            ("diff" function
+               (:user-visible-flag t
+                :arguments ("old" "new" "switches" "no-async"))
+                nil [2915 4332])
+            ("diff-file-local-copy" function (:arguments ("file-or-buf")) nil [4334 4906])
+            ("diff-use-labels" variable (:default-value 'check) nil [4908 5114])
+            ("diff-default-directory" variable nil nil [5116 5147])
+            ("diff-check-labels" function (:arguments ("force")) nil [5149 5444])
+            ("diff-no-select" function (:arguments ("old" "new" "switches" "no-async" "buf")) nil [5446 8334])
+            ("diff-process-filter" function (:arguments ("proc" "string")) nil [8336 8725])
+            ("diff-backup" function
+               (:user-visible-flag t
+                :arguments ("file" "switches"))
+                nil [8742 9404])
+            ("diff-latest-backup-file" function (:arguments ("fn")) nil [9421 9682])
+            ("diff-buffer-with-file" function
+               (:user-visible-flag t
+                :arguments ("buffer"))
+                nil [9699 10167])
+            ("diff-buffers" function
+               (:user-visible-flag t
+                :arguments ("old" "new" "switches" "no-async"))
+                nil [10184 11128])
+            ("diff" package nil nil [11130 11145]))          
+      :file "diff.el.gz"
+      :pointmax 11169
+      :fsize 3754
+      :lastmodtime '(25521 36547 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-4b9aa302"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("cl-lib" include nil nil [2087 2104])
+            ("subr-x" include nil nil [2125 2142])
+            ("easy-mmode" include nil nil [2144 2165])
+            ("vc-find-revision" function (:prototype-flag t) nil [2167 2200])
+            ("vc-find-revision-no-save" function (:prototype-flag t) nil [2201 2242])
+            ("vc-find-revision-no-save" variable nil nil [2243 2276])
+            ("add-log-buffer-file-name-function" variable nil nil [2277 2319])
+            ("diff-mode" customgroup (:user-visible-flag t) nil [2322 2436])
+            ("diff-default-read-only" variable nil nil [2438 2557])
+            ("diff-jump-to-old-file" variable nil nil [2559 2705])
+            ("diff-update-on-the-fly" variable (:default-value t) nil [2707 3199])
+            ("diff-advance-after-apply-hunk" variable (:default-value t) nil [3201 3340])
+            ("diff-mode-hook" variable nil nil [3342 3495])
+            ("diff-refine" variable (:default-value 'font-lock) nil [3497 4020])
+            ("diff-font-lock-prettify" variable nil nil [4022 4344])
+            ("diff-font-lock-syntax" variable (:default-value t) nil [4346 5742])
+            ("diff-whitespace-style" variable (:default-value '(face trailing)) nil [5744 5945])
+            ("diff-vc-backend" variable nil nil [5947 6040])
+            ("diff-vc-revisions" variable nil nil [6042 6138])
+            ("defvar-local" code nil nil [6140 6250])
+            ("diff-outline-regexp" variable (:default-value "\\([*+][*+][*+] [^0-9]\\|@@ ...\\|\\*\\*\\* [0-9].\\|--- [0-9]..\\)") nil [6252 6352])
+            ("defvar-keymap" code nil nil [6388 6982])
+            ("defvar-keymap" code nil nil [6984 8191])
+            ("easy-menu-define" code nil nil [8193 10554])
+            ("diff-minor-mode-prefix" variable (:default-value "=") nil [10556 10701])
+            ("defvar-keymap" code nil nil [10703 10875])
+            ("with-suppressed-warnings" code nil nil [10877 11615])
+            ("make-obsolete" code nil nil [11616 11690])
+            ("make-obsolete-variable" code nil nil [11691 11798])
+            ("diff-header" variable
+               (:default-value '((((class color) (min-colors 88) (background light)) :background "grey85" :extend t) (((class color) (min-colors 88) (background dark)) :background "grey45" :extend t) (((class color)) :foreground "blue1" :weight bold :extend t) (t :weight bold :extend t))
+                :type "face")
+                nil [12279 12650])
+            ("diff-file-header" variable
+               (:default-value '((((class color) (min-colors 88) (background light)) :background "grey75" :weight bold :extend t) (((class color) (min-colors 88) (background dark)) :background "grey60" :weight bold :extend t) (((class color)) :foreground "cyan" :weight bold :extend t) (t :weight bold :extend t))
+                :type "face")
+                nil [12652 13064])
+            ("diff-index" variable
+               (:default-value '((t :inherit diff-file-header))
+                :type "face")
+                nil [13066 13180])
+            ("diff-hunk-header" variable
+               (:default-value '((t :inherit diff-header))
+                :type "face")
+                nil [13182 13296])
+            ("diff-removed" variable
+               (:default-value '((default :inherit diff-changed) (((class color) (min-colors 257) (background light)) :background "#ffeeee" :extend t) (((class color) (min-colors 88) (background light)) :background "#ffdddd" :extend t) (((class color) (min-colors 88) (background dark)) :background "#553333" :extend t) (((class color)) :foreground "red" :extend t))
+                :type "face")
+                nil [13298 13753])
+            ("diff-added" variable
+               (:default-value '((default :inherit diff-changed) (((class color) (min-colors 257) (background light)) :background "#eeffee" :extend t) (((class color) (min-colors 88) (background light)) :background "#ddffdd" :extend t) (((class color) (min-colors 88) (background dark)) :background "#335533" :extend t) (((class color)) :foreground "green" :extend t))
+                :type "face")
+                nil [13755 14208])
+            ("diff-changed-unspecified" variable
+               (:default-value '((default :inherit diff-changed) (((class color) (min-colors 88) (background light)) :background "grey90" :extend t) (((class color) (min-colors 88) (background dark)) :background "grey20" :extend t) (((class color)) :foreground "grey" :extend t))
+                :type "face")
+                nil [14210 14599])
+            ("diff-changed" variable
+               (:default-value '((t nil))
+                :type "face")
+                nil [14601 14708])
+            ("diff-indicator-removed" variable
+               (:default-value '((default :inherit diff-removed) (((class color) (min-colors 88)) :foreground "#aa2222"))
+                :type "face")
+                nil [14710 14936])
+            ("diff-indicator-removed-face" variable (:default-value 'diff-indicator-removed) nil [14937 14997])
+            ("diff-indicator-added" variable
+               (:default-value '((default :inherit diff-added) (((class color) (min-colors 88)) :foreground "#22aa22"))
+                :type "face")
+                nil [14999 15219])
+            ("diff-indicator-added-face" variable (:default-value 'diff-indicator-added) nil [15220 15276])
+            ("diff-indicator-changed" variable
+               (:default-value '((default :inherit diff-changed) (((class color) (min-colors 88)) :foreground "#aaaa22"))
+                :type "face")
+                nil [15278 15497])
+            ("diff-indicator-changed-face" variable (:default-value 'diff-indicator-changed) nil [15498 15558])
+            ("diff-function" variable
+               (:default-value '((t :inherit diff-header))
+                :type "face")
+                nil [15560 15692])
+            ("diff-context" variable
+               (:default-value '((t :extend t))
+                :type "face")
+                nil [15694 15828])
+            ("diff-nonexistent" variable
+               (:default-value '((t :inherit diff-file-header))
+                :type "face")
+                nil [15830 15968])
+            ("diff-error" variable
+               (:default-value '((((class color)) :foreground "red" :background "black" :weight bold) (t :weight bold))
+                :type "face")
+                nil [15970 16159])
+            ("diff-yank-handler" variable
+               (:constant-flag t
+                :default-value '(diff-yank-function))
+                nil [16161 16211])
+            ("diff-yank-function" function (:arguments ("text")) nil [16212 17099])
+            ("diff-hunk-header-re-unified" variable
+               (:constant-flag t
+                :default-value "^@@ -\\([0-9]+\\)\\(?:,\\([0-9]+\\)\\)? \\+\\([0-9]+\\)\\(?:,\\([0-9]+\\)\\)? @@")
+                nil [17101 17224])
+            ("diff-context-mid-hunk-header-re" variable
+               (:constant-flag t
+                :default-value "--- \\([0-9]+\\)\\(?:,\\([0-9]+\\)\\)? ----$")
+                nil [17225 17316])
+            ("diff-use-changed-face" variable (:default-value (and (face-differs-from-default-p 'diff-changed) (not (face-equal 'diff-changed 'diff-added)) (not (face-equal 'diff-changed 'diff-removed)))) nil [17318 17722])
+            ("diff-font-lock-keywords" variable (:default-value `((,(concat "\\(" diff-hunk-header-re-unified "\\)\\(.*\\)$") (1 'diff-hunk-header) (6 'diff-function)) ("^\\(\\*\\{15\\}\\)\\(.*\\)$" (1 'diff-hunk-header) (2 'diff-function)) ("^\\*\\*\\* .+ \\*\\*\\*\\*" quote diff-hunk-header) (,diff-context-mid-hunk-header-re quote diff-hunk-header) ("^[0-9,]+[acd][0-9,]+$" quote diff-hunk-header) ("^---$" quote diff-hunk-header) ("^\\(---\\|\\+\\+\\+\\|\\*\\*\\*\\) \\([^	
+]+?\\)\\(?:	.*\\| \\(\\*\\*\\*\\*\\|----\\)\\)?
+" (0 'diff-header) (2 (if (not (match-end 3)) 'diff-file-header) prepend)) ("^\\([-<]\\)\\(.*
+\\)" (1 diff-indicator-removed-face) (2 'diff-removed)) ("^\\([+>]\\)\\(.*
+\\)" (1 diff-indicator-added-face) (2 'diff-added)) ("^\\(!\\)\\(.*
+\\)" (1 (if diff-use-changed-face diff-indicator-changed-face (save-match-data (let ((limit (save-excursion (diff-beginning-of-hunk)))) (when (< limit (point)) (if (save-excursion (re-search-backward diff-context-mid-hunk-header-re limit t)) diff-indicator-added-face diff-indicator-removed-face)))))) (2 (if diff-use-changed-face 'diff-changed-unspecified (save-match-data (let ((limit (save-excursion (diff-beginning-of-hunk)))) (when (< limit (point)) (if (save-excursion (re-search-backward diff-context-mid-hunk-header-re limit t)) 'diff-added 'diff-removed))))))) ("^\\(?:Index\\|revno\\): \\(.+\\).*
+" (0 'diff-header) (1 'diff-index prepend)) ("^\\(?:index .*\\.\\.\\|diff \\).*
+" quote diff-header) ("^\\(?:new\\|deleted\\) file mode .*
+" quote diff-header) ("^Only in .*
+" quote diff-nonexistent) ("^Binary files .* differ
+" quote diff-file-header) ("^\\(#\\)\\(.*\\)" (1 font-lock-comment-delimiter-face) (2 font-lock-comment-face)) ("^diff: .*" (0 'diff-error)) ("^[^-=+*!<>#].*
+" (0 'diff-context)) (,#'diff--font-lock-syntax) (,#'diff--font-lock-prettify) (,#'diff--font-lock-refined))) nil [17724 20210])
+            ("diff-font-lock-defaults" variable
+               (:constant-flag t
+                :default-value '(diff-font-lock-keywords t nil nil nil (font-lock-multiline)))
+                nil [20212 20317])
+            ("diff-imenu-generic-expression" variable (:default-value '((nil "\\+\\+\\+ \\([^	
+]+\\)[	
+]" 1) (nil "^--- \\([^	
+]+\\)	.*
+\\*" 1))) nil [20319 20666])
+            ("diff-valid-unified-empty-line" variable (:default-value t) nil [20709 21011])
+            ("diff-hunk-header-re" variable
+               (:constant-flag t
+                :default-value (concat "^\\(?:" diff-hunk-header-re-unified ".*\\|\\*\\{15\\}.*
+\\*\\*\\* .+ \\*\\*\\*\\*\\|[0-9]+\\(,[0-9]+\\)?[acd][0-9]+\\(,[0-9]+\\)?\\)$"))
+                nil [21013 21191])
+            ("diff-file-header-re" variable
+               (:constant-flag t
+                :default-value (concat "^\\(--- .+
+\\+\\+\\+ \\|\\*\\*\\* .+
+--- \\|[^-+!<>0-9@* 
+]\\).+
+" (substring diff-hunk-header-re 1)))
+                nil [21192 21337])
+            ("diff-separator-re" variable
+               (:constant-flag t
+                :default-value "^--+ ?$")
+                nil [21339 21377])
+            ("diff-narrowed-to" variable nil nil [21379 21408])
+            ("diff-buffer-type" variable nil nil [21409 21438])
+            ("diff-hunk-style" function (:arguments ("style")) nil [21440 21637])
+            ("diff-prev-line-if-patch-separator" function nil nil [21639 21969])
+            ("diff-end-of-hunk" function (:arguments ("style" "donttrustheader")) nil [21971 24701])
+            ("diff-file-junk-re" variable
+               (:constant-flag t
+                :default-value (concat "Index: \\|Prereq: \\|=\\{20,\\}\\|" "diff \\|index \\|\\(?:deleted file\\|new\\(?: file\\)?\\|old\\) mode\\|=== modified file"))
+                nil [24807 24990])
+            ("diff--at-diff-header-p" function nil nil [25089 25992])
+            ("diff-beginning-of-hunk" function (:arguments ("try-harder")) nil [25994 26847])
+            ("diff-unified-hunk-p" function nil nil [26849 26974])
+            ("diff-beginning-of-file" function nil nil [26976 27706])
+            ("diff-end-of-file" function nil nil [27709 27965])
+            ("diff--auto-refine-data" variable nil nil [27967 28002])
+            ("easy-mmode-define-navigation" code nil nil [28043 28973])
+            ("easy-mmode-define-navigation" code nil nil [28975 29060])
+            ("diff-bounds-of-hunk" function nil nil [29062 29687])
+            ("diff-bounds-of-file" function nil nil [29689 30183])
+            ("diff-restrict-view" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [30185 30502])
+            ("diff--some-hunks-p" function nil nil [30504 30630])
+            ("diff-hunk-kill" function (:user-visible-flag t) nil [30632 31787])
+            ("diff-beginning-of-file-and-junk" function nil nil [31789 33938])
+            ("diff-file-kill" function (:user-visible-flag t) nil [33940 34233])
+            ("diff-kill-junk" function (:user-visible-flag t) nil [34235 34672])
+            ("diff-count-matches" function (:arguments ("re" "start" "end")) nil [34674 34839])
+            ("diff-splittable-p" function nil nil [34841 35032])
+            ("diff-split-hunk" function (:user-visible-flag t) nil [35034 35909])
+            ("diff--outline-level" function nil nil [35911 36012])
+            ("diff-remembered-files-alist" variable nil nil [36052 36092])
+            ("diff-remembered-defdir" variable nil nil [36093 36128])
+            ("diff-filename-drop-dir" function (:arguments ("file")) nil [36130 36231])
+            ("diff-merge-strings" function (:arguments ("ancestor" "from" "to")) nil [36233 37207])
+            ("diff-tell-file-name" function
+               (:user-visible-flag t
+                :arguments ("old" "name"))
+                nil [37209 37804])
+            ("diff-hunk-file-names" function (:arguments ("old")) nil [37806 39337])
+            ("diff-find-file-name" function (:arguments ("old" "noprompt" "prefix")) nil [39339 42121])
+            ("diff-ediff-patch" function (:user-visible-flag t) nil [42124 42338])
+            ("diff-unified->context" function
+               (:user-visible-flag t
+                :arguments ("start" "end"))
+                nil [42484 47851])
+            ("diff-context->unified" function
+               (:user-visible-flag t
+                :arguments ("start" "end" "to-context"))
+                nil [47853 53211])
+            ("diff-reverse-direction" function
+               (:user-visible-flag t
+                :arguments ("start" "end"))
+                nil [53213 55954])
+            ("diff-fixup-modifs" function
+               (:user-visible-flag t
+                :arguments ("start" "end"))
+                nil [55956 58335])
+            ("diff-write-contents-hooks" function nil nil [58359 58509])
+            ("diff-unhandled-changes" variable nil nil [58695 58730])
+            ("diff-after-change-function" function (:arguments ("beg" "end" "_len")) nil [58731 59521])
+            ("diff-post-command-hook" function nil nil [59523 61152])
+            ("diff-next-error" function (:arguments ("arg" "reset")) nil [61154 61515])
+            ("diff--font-lock-cleanup" function nil nil [61517 61835])
+            ("defvar-local" code nil nil [61837 61931])
+            ("or" code nil nil [61998 62151])
+            ("whitespace-style" variable nil nil [62153 62178])
+            ("whitespace-trailing-regexp" variable nil nil [62179 62214])
+            ("define-derived-mode" code nil nil [62231 64737])
+            ("define-minor-mode" code nil nil [64754 65233])
+            ("diff-setup-whitespace" function nil nil [65314 66136])
+            ("diff-setup-buffer-type" function nil nil [66138 66720])
+            ("diff-delete-if-empty" function nil nil [66722 67073])
+            ("diff-delete-empty-files" function nil nil [67075 67216])
+            ("diff-make-unified" function nil nil [67218 67559])
+            ("diff-next-complex-hunk" function (:user-visible-flag t) nil [67629 67942])
+            ("diff-sanity-check-context-hunk-half" function (:arguments ("lines")) nil [67944 68867])
+            ("diff-sanity-check-hunk" function nil nil [68869 72304])
+            ("diff-hunk-text" function (:arguments ("hunk" "destp" "char-offset")) nil [72306 75719])
+            ("diff-find-text" function (:arguments ("text")) nil [75722 76254])
+            ("diff-find-approx-text" function (:arguments ("text")) nil [76256 76911])
+            ("define-obsolete-function-alias" code nil nil [76913 76968])
+            ("diff-find-source-location" function (:arguments ("other-file" "reverse" "noprompt")) nil [76970 81057])
+            ("diff-hunk-status-msg" function (:arguments ("line-offset" "reversed" "dry-run")) nil [81060 81454])
+            ("diff-apply-hunk-to-backup-file" variable nil nil [81456 81499])
+            ("diff-apply-hunk" function
+               (:user-visible-flag t
+                :arguments ("reverse"))
+                nil [81501 84127])
+            ("diff-test-hunk" function
+               (:user-visible-flag t
+                :arguments ("reverse"))
+                nil [84130 84550])
+            ("diff-kill-applied-hunks" function (:user-visible-flag t) nil [84553 84908])
+            ("defalias" code nil nil [84910 84963])
+            ("diff-goto-source" function
+               (:user-visible-flag t
+                :arguments ("other-file" "event"))
+                nil [84965 86230])
+            ("diff-current-defun" function nil nil [86233 87873])
+            ("diff-ignore-whitespace-hunk" function (:user-visible-flag t) nil [87875 88016])
+            ("diff-refresh-hunk" function
+               (:user-visible-flag t
+                :arguments ("ignore-whitespace"))
+                nil [88018 89959])
+            ("diff-refine-changed" variable
+               (:default-value '((((class color) (min-colors 88) (background light)) :background "#ffff55") (((class color) (min-colors 88) (background dark)) :background "#aaaa22") (t :inverse-video t))
+                :type "face")
+                nil [89992 90280])
+            ("diff-refine-removed" variable
+               (:default-value '((default :inherit diff-refine-changed) (((class color) (min-colors 257) (background light)) :background "#ffcccc") (((class color) (min-colors 88) (background light)) :background "#ffbbbb") (((class color) (min-colors 88) (background dark)) :background "#aa2222"))
+                :type "face")
+                nil [90282 90696])
+            ("diff-refine-added" variable
+               (:default-value '((default :inherit diff-refine-changed) (((class color) (min-colors 257) (background light)) :background "#bbffbb") (((class color) (min-colors 88) (background light)) :background "#aaffaa") (((class color) (min-colors 88) (background dark)) :background "#22aa22"))
+                :type "face")
+                nil [90698 91108])
+            ("diff-refine-preproc" function nil nil [91110 91740])
+            ("diff--forward-while-leading-char" function (:arguments ("char" "bound")) nil [91742 92028])
+            ("diff-refine-hunk" function (:user-visible-flag t) nil [92030 92456])
+            ("diff--refine-hunk" function (:arguments ("start" "end")) nil [92458 94942])
+            ("diff--iterate-hunks" function (:arguments ("max" "fun")) nil [94944 95832])
+            ("diff--font-lock-refined" function (:arguments ("max")) nil [95834 97404])
+            ("diff--overlay-auto-delete" function (:arguments ("ol" "_after" "_beg" "_end" "_len")) nil [97406 97498])
+            ("diff-undo" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [97500 97660])
+            ("diff-add-log-use-relative-names" variable nil nil [97677 97982])
+            ("diff-add-log-current-defuns" function nil nil [97984 104336])
+            ("diff-add-change-log-entries-other-window" function (:user-visible-flag t) nil [104338 105742])
+            ("diff-delete-trailing-whitespace" function
+               (:user-visible-flag t
+                :arguments ("other-file"))
+                nil [105744 108372])
+            ("define-fringe-bitmap" code nil nil [108407 108591])
+            ("define-fringe-bitmap" code nil nil [108593 108777])
+            ("define-fringe-bitmap" code nil nil [108779 108963])
+            ("define-fringe-bitmap" code nil nil [108965 109219])
+            ("diff--font-lock-prettify" function (:arguments ("limit")) nil [109221 114523])
+            ("diff--font-lock-syntax" function (:arguments ("max")) nil [114565 115405])
+            ("diff-syntax-fontify" function (:arguments ("beg" "end")) nil [115407 115665])
+            ("subr-x" include nil nil [115686 115703])
+            ("defvar-local" code nil nil [115730 115777])
+            ("put" code nil nil [115778 115832])
+            ("diff-syntax-fontify-hunk" function (:arguments ("beg" "end" "old")) nil [115834 122841])
+            ("diff-syntax-fontify-props" function (:arguments ("file" "text" "line-nb" "hunk-only")) nil [122843 125629])
+            ("diff-vc-deduce-fileset" function nil nil [125646 125959])
+            ("diff--filter-substring" function (:arguments ("str")) nil [125961 126983])
+            ("diff-wiggle" function (:user-visible-flag t) nil [127151 129096])
+            ("diff-mode" package nil nil [129121 129141]))          
+      :file "diff-mode.el.gz"
+      :pointmax 130562
+      :fsize 33675
+      :lastmodtime '(25539 41967 0 0)
+      :unmatched-syntax '((close-paren 115703 . 115704) (symbol 115668 . 115685) (open-paren 115667 . 115668) (close-paren 2142 . 2143) (symbol 2107 . 2124) (open-paren 2106 . 2107) (close-paren 2104 . 2105) (symbol 2069 . 2086) (open-paren 2068 . 2069))))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!vc!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

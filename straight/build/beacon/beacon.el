@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/beacon/beacon.el

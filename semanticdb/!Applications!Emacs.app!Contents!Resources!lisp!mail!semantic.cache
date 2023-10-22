@@ -1,0 +1,64 @@
+;; Object semanticdb-project-database-file-4b8ec6ac
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-4b8ec6ac"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-4b4bdcc8"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("sendmail" include nil nil [5873 5892])
+            ("mail-abbrev" customgroup (:user-visible-flag t) nil [5895 6004])
+            ("define-minor-mode" code nil nil [6021 6455])
+            ("mail-abbrevs-only" variable nil nil [6457 6639])
+            ("mail-abbrevs" variable nil nil [6717 7007])
+            ("mail-abbrev-modtime" variable nil nil [7009 7118])
+            ("mail-abbrevs-sync-aliases" function nil nil [7120 7472])
+            ("mail-abbrevs-setup" function nil nil [7489 7960])
+            ("mail-abbrevs-enable" function nil nil [7962 8042])
+            ("mail-abbrevs-disable" function nil nil [8044 8229])
+            ("build-mail-abbrevs" function (:arguments ("file" "recursivep")) nil [8246 10597])
+            ("mail-alias-separator-string" variable (:default-value ", ") nil [10599 10876])
+            ("mail-abbrev-aliases-need-to-be-resolved" variable (:default-value t) nil [11014 11064])
+            ("define-mail-abbrev" function
+               (:user-visible-flag t
+                :arguments ("name" "definition" "from-mailrc-file"))
+                nil [11198 14993])
+            ("mail-resolve-all-aliases" function nil nil [14996 15392])
+            ("mail-resolve-all-aliases-1" function (:arguments ("sym" "so-far")) nil [15394 16259])
+            ("mail-abbrev-expand-hook" function nil nil [16262 17001])
+            ("mail-abbrev-mode-regexp" variable (:default-value "^\\(Resent-\\)?\\(To\\|From\\|Cc\\|Bcc\\|Reply-To\\):") nil [17044 17541])
+            ("mail-abbrev-syntax-table" variable nil nil [17543 17849])
+            ("mail-abbrev-make-syntax-table" function nil nil [17851 18650])
+            ("mail-abbrev-in-expansion-header-p" function nil nil [18652 19210])
+            ("mail-abbrev-expand-wrapper" function (:arguments ("expand")) nil [19212 21903])
+            ("merge-mail-abbrevs" function
+               (:user-visible-flag t
+                :arguments ("file"))
+                nil [21921 22359])
+            ("rebuild-mail-abbrevs" function
+               (:user-visible-flag t
+                :arguments ("file"))
+                nil [22361 22873])
+            ("mail-abbrev-insert-alias" function
+               (:user-visible-flag t
+                :arguments ("alias"))
+                nil [22875 23273])
+            ("mail-abbrev-complete-alias" function (:user-visible-flag t) nil [23275 23643])
+            ("mail-abbrev-next-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [23645 24105])
+            ("mail-abbrev-end-of-buffer" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [24107 24576])
+            ("eval-after-load" code nil nil [24578 24789])
+            ("mailabbrev" package nil nil [24953 24974]))          
+      :file "mailabbrev.el.gz"
+      :pointmax 25004
+      :fsize 8138
+      :lastmodtime '(25521 36546 0 0)
+      :unmatched-syntax '((close-paren 5892 . 5893) (symbol 5853 . 5870) (open-paren 5852 . 5853))))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!mail!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

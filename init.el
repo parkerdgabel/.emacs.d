@@ -184,6 +184,8 @@
   :hook
   (org-mode . abbrev-mode))
 
+(use-package ox-hugo)
+
 (use-package org-tracktable
   :straight t
   :init
@@ -564,6 +566,13 @@
 (use-package ox-pandoc
   :after org)
 
+(use-package forge
+  :after magit)
+
+(use-package auth-source
+  :straight nil
+  :config
+  (setq auth-sources '("~/.authinfo")))
 
 (use-package centered-cursor-mode
   :straight t
@@ -682,18 +691,45 @@
 
 (native-compile-async "~/.emacs.d/straight/build/org" t t)
 
+(use-package ace-window
+  :straight nil
+  :bind
+  (("C-x w a" . ace-window)))
+
+(use-package calibredb
+  :defer t
+  :config
+  (setq calibredb-root-dir "~/Documents/Calibre")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
+  (setq calibredb-library-alist '(("~/Documents/Calibre"))))
+
+(use-package custom-functions
+  :straight nil
+  :load-path "lisp/"
+  :bind
+  (("C-j" . my-insert-newline-below)))
+
+(use-package custom-macros
+  :straight nil
+  :load-path "lisp/")
+
+(use-package pulsar
+  :config
+  (pulsar-global-mode t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/fiction/post-apocalypse-patrol/outline.org"))
+ '(org-agenda-files '("/Users/parkergabel/fiction/urban-diving/story.org"))
  '(package-selected-packages
-   '(magit which-key adoc-mode company-wordfreq consult-company embark-consult embark marginalia orderless vertico rainbow-delimiters projectile doom-themes doom-modeline company))
+   '(magit which-key adoc-mode company-wordfreq consult-company
+	   embark-consult embark marginalia orderless vertico
+	   rainbow-delimiters projectile doom-themes doom-modeline
+	   company))
  '(vertico-buffer-display-action
-   '(display-buffer-in-side-window
-     (side . left)
-     (window-width . 0.3))))
+   '(display-buffer-in-side-window (side . left) (window-width . 0.3))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

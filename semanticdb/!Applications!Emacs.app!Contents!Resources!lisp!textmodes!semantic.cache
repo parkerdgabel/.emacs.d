@@ -1,0 +1,194 @@
+;; Object semanticdb-project-database-file-c0ae1bec
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-c0ae1bec"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-c0ae1bb2"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("subr-x" include nil nil [1040 1057])
+            ("fill" customgroup (:user-visible-flag t) nil [1060 1171])
+            ("fill-individual-varying-indent" variable nil nil [1173 1569])
+            ("colon-double-space" variable nil nil [1571 1702])
+            ("fill-separate-heterogeneous-words-with-space" variable nil nil [1704 2228])
+            ("fill-paragraph-function" variable nil nil [2230 2640])
+            ("fill-paragraph-handle-comment" variable (:default-value t) nil [2642 2757])
+            ("enable-kinsoku" variable (:default-value t) nil [2759 3057])
+            ("set-fill-prefix" function (:user-visible-flag t) nil [3059 3646])
+            ("adaptive-fill-mode" variable (:default-value t) nil [3648 3766])
+            ("adaptive-fill-regexp" variable (:default-value (purecopy "[ 	]*\\([-–!|#%;>*·•‣⁃◦]+[ 	]*\\)*")) nil [3768 4473])
+            ("adaptive-fill-first-line-regexp" variable (:default-value (purecopy "\\`[ 	]*\\'")) nil [4475 5003])
+            ("adaptive-fill-function" variable (:default-value nil) nil [5005 5220])
+            ("fill-indent-according-to-mode" variable nil nil [5222 5376])
+            ("current-fill-column--has-warned" variable nil nil [5378 5422])
+            ("current-fill-column" function nil nil [5424 6842])
+            ("canonically-space-region" function
+               (:user-visible-flag t
+                :arguments ("beg" "end"))
+                nil [6844 9095])
+            ("fill-common-string-prefix" function (:arguments ("s1" "s2")) nil [9097 9374])
+            ("fill-match-adaptive-prefix" function nil nil [9376 9762])
+            ("fill-context-prefix" function (:arguments ("from" "to" "first-line-regexp")) nil [9764 13081])
+            ("fill-single-word-nobreak-p" function nil nil [13083 13610])
+            ("fill-french-nobreak-p" function nil nil [13612 14309])
+            ("fill-polish-nobreak-p" function nil nil [14311 14785])
+            ("fill-single-char-nobreak-p" function nil nil [14787 15198])
+            ("fill-nobreak-predicate" variable nil nil [15200 15580])
+            ("fill-nobreak-invisible" variable nil nil [15582 15712])
+            ("fill-nobreak-p" function nil nil [15714 16960])
+            ("fill-find-break-point-function-table" variable (:default-value (make-char-table nil)) nil [16962 17094])
+            ("fill-nospace-between-words-table" variable (:default-value (make-char-table nil)) nil [17096 17224])
+            ("progn" code nil nil [17226 17953])
+            ("fill-find-break-point" function (:arguments ("limit")) nil [17955 18642])
+            ("fill-delete-prefix" function (:arguments ("from" "to" "prefix")) nil [18644 19565])
+            ("add-to-list" code nil nil [19835 19899])
+            ("fill-delete-newlines" function (:arguments ("from" "to" "justify" "nosqueeze" "squeeze-after")) nil [19901 22364])
+            ("fill-move-to-break-point" function (:arguments ("linebeg")) nil [22366 24731])
+            ("fill-text-properties-at" function (:arguments ("pos")) nil [24802 25048])
+            ("fill-newline" function nil nil [25050 26366])
+            ("fill-indent-to-left-margin" function nil nil [26368 26593])
+            ("fill-region-as-paragraph" function
+               (:user-visible-flag t
+                :arguments ("from" "to" "justify" "nosqueeze" "squeeze-after"))
+                nil [26595 32099])
+            ("skip-line-prefix" function (:arguments ("prefix")) nil [32101 32428])
+            ("fill-minibuffer-function" function (:arguments ("arg")) nil [32430 32634])
+            ("fill-forward-paragraph-function" variable (:default-value 'forward-paragraph) nil [32636 32926])
+            ("fill-forward-paragraph" function (:arguments ("arg")) nil [32928 33012])
+            ("fill-paragraph" function
+               (:user-visible-flag t
+                :arguments ("justify" "region"))
+                nil [33014 36988])
+            ("declare-function" code nil nil [36990 37070])
+            ("declare-function" code nil nil [37071 37144])
+            ("fill-comment-paragraph" function (:arguments ("justify")) nil [37147 42574])
+            ("fill-region" function
+               (:user-visible-flag t
+                :arguments ("from" "to" "justify" "nosqueeze" "to-eop"))
+                nil [42576 44754])
+            ("default-justification" variable (:default-value 'left) nil [44758 45433])
+            ("make-variable-buffer-local" code nil nil [45434 45485])
+            ("current-justification" function nil nil [45487 46036])
+            ("set-justification" function
+               (:user-visible-flag t
+                :arguments ("begin" "end" "style" "whole-par"))
+                nil [46038 47884])
+            ("set-justification-none" function
+               (:user-visible-flag t
+                :arguments ("b" "e"))
+                nil [47886 48194])
+            ("set-justification-left" function
+               (:user-visible-flag t
+                :arguments ("b" "e"))
+                nil [48196 48651])
+            ("set-justification-right" function
+               (:user-visible-flag t
+                :arguments ("b" "e"))
+                nil [48653 49036])
+            ("set-justification-full" function
+               (:user-visible-flag t
+                :arguments ("b" "e"))
+                nil [49038 49417])
+            ("set-justification-center" function
+               (:user-visible-flag t
+                :arguments ("b" "e"))
+                nil [49419 49715])
+            ("justify-current-line" function
+               (:user-visible-flag t
+                :arguments ("how" "eop" "nosqueeze"))
+                nil [50530 55388])
+            ("unjustify-current-line" function nil nil [55390 56424])
+            ("unjustify-region" function (:arguments ("begin" "end")) nil [56426 57021])
+            ("fill-nonuniform-paragraphs" function
+               (:user-visible-flag t
+                :arguments ("min" "max" "justifyp" "citation-regexp"))
+                nil [57025 58046])
+            ("fill-individual-paragraphs" function
+               (:user-visible-flag t
+                :arguments ("min" "max" "justify" "citation-regexp"))
+                nil [58048 62116])
+            ("fill-individual-paragraphs-prefix" function (:arguments ("citation-regexp")) nil [62118 63507])
+            ("fill-individual-paragraphs-citation" function (:arguments ("string" "citation-regexp")) nil [63509 63691]))          
+      :file "fill.el.gz"
+      :pointmax 63715
+      :fsize 17949
+      :lastmodtime '(25770 30159 0 0)
+      :unmatched-syntax '((close-paren 1057 . 1058) (symbol 1022 . 1039) (open-paren 1021 . 1022)))
+    (semanticdb-table "semanticdb-table-ca41f6d4"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("paragraphs" customgroup (:user-visible-flag t) nil [1035 1114])
+            ("put" code nil nil [1116 1159])
+            ("define-minor-mode" code nil nil [1160 3010])
+            ("paragraph-start" variable (:default-value "\\|[ 	]*$") nil [3012 3809])
+            ("paragraph-separate" variable (:default-value "[ 	]*$") nil [4144 4611])
+            ("sentence-end-double-space" variable (:default-value t) nil [4613 5062])
+            ("sentence-end-without-period" variable nil nil [5064 5501])
+            ("sentence-end-without-space" variable (:default-value "。．？！") nil [5503 5859])
+            ("sentence-end" variable nil nil [5861 6299])
+            ("sentence-end-base" variable (:default-value "[.?!…‽][]\"'”’)}»›]*") nil [6301 6485])
+            ("sentence-end" function nil nil [6487 7504])
+            ("page-delimiter" variable (:default-value "^") nil [7506 7633])
+            ("paragraph-ignore-fill-prefix" variable nil nil [7635 7866])
+            ("forward-paragraph" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [7893 13133])
+            ("backward-paragraph" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [13135 13699])
+            ("mark-paragraph" function
+               (:user-visible-flag t
+                :arguments ("arg" "allow-extend"))
+                nil [13701 14728])
+            ("kill-paragraph" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [14730 14993])
+            ("backward-kill-paragraph" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [14995 15263])
+            ("transpose-paragraphs" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [15265 15736])
+            ("start-of-paragraph-text" function nil nil [15738 16308])
+            ("end-of-paragraph-text" function nil nil [16310 16615])
+            ("forward-sentence" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [16617 18031])
+            ("count-sentences" function (:arguments ("start" "end")) nil [18033 18741])
+            ("repunctuate-sentences-filter" function (:arguments ("_start" "_end")) nil [18743 19003])
+            ("repunctuate-sentences-filter" variable (:default-value nil) nil [19005 19331])
+            ("repunctuate-sentences" function (:arguments ("no-query" "start" "end")) nil [19333 20647])
+            ("backward-sentence" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [20650 20878])
+            ("kill-sentence" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [20880 21116])
+            ("backward-kill-sentence" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [21118 21372])
+            ("mark-end-of-sentence" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [21374 21751])
+            ("transpose-sentences" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [21753 22216]))          
+      :file "paragraphs.el.gz"
+      :pointmax 22246
+      :fsize 6703
+      :lastmodtime '(25770 30159 0 0)
+      :unmatched-syntax nil))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!textmodes!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

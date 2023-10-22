@@ -1,0 +1,524 @@
+;; Object semanticdb-project-database-file-43fc98d8
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-43fc98d8"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-468c1ada"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("declare-function" code nil nil [1324 1377])
+            ("declare-function" code nil nil [1378 1424])
+            ("declare-function" code nil nil [1425 1475])
+            ("dbus-debug" variable nil nil [1476 1495])
+            ("dbus-message-type-invalid" variable nil nil [1496 1530])
+            ("dbus-message-type-method-call" variable nil nil [1531 1569])
+            ("dbus-message-type-method-return" variable nil nil [1570 1610])
+            ("dbus-message-type-error" variable nil nil [1611 1643])
+            ("dbus-message-type-signal" variable nil nil [1644 1677])
+            ("dbus-registered-objects-table" variable nil nil [1678 1716])
+            ("unless" code nil nil [1838 1910])
+            ("unless" code nil nil [1912 1967])
+            ("cl-lib" include nil nil [1969 1986])
+            ("seq" include nil nil [1987 2001])
+            ("subr-x" include nil nil [2002 2019])
+            ("xml" include nil nil [2020 2034])
+            ("dbus-compound-types" variable
+               (:constant-flag t
+                :default-value '(:array :variant :struct :dict-entry))
+                nil [2058 2174])
+            ("dbus-service-dbus" variable
+               (:constant-flag t
+                :default-value "org.freedesktop.DBus")
+                nil [2176 2276])
+            ("dbus-path-dbus" variable
+               (:constant-flag t
+                :default-value "/org/freedesktop/DBus")
+                nil [2278 2379])
+            ("dbus-path-local" variable
+               (:constant-flag t
+                :default-value (concat dbus-path-dbus "/Local"))
+                nil [2381 2505])
+            ("dbus-interface-dbus" variable
+               (:constant-flag t
+                :default-value "org.freedesktop.DBus")
+                nil [2540 2656])
+            ("dbus-interface-peer" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Peer"))
+                nil [2658 2854])
+            ("dbus-interface-introspectable" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Introspectable"))
+                nil [3070 3317])
+            ("dbus-interface-properties" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Properties"))
+                nil [3492 3710])
+            ("dbus-interface-objectmanager" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".ObjectManager"))
+                nil [4557 4780])
+            ("dbus-interface-monitoring" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Monitoring"))
+                nil [5358 5563])
+            ("dbus-interface-local" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Local"))
+                nil [5812 5961])
+            ("dbus-annotation-deprecated" variable
+               (:constant-flag t
+                :default-value (concat dbus-interface-dbus ".Deprecated"))
+                nil [6134 6296])
+            ("dbus" customgroup (:user-visible-flag t) nil [6327 6446])
+            ("dbus-error-dbus" variable
+               (:constant-flag t
+                :default-value "org.freedesktop.DBus.Error")
+                nil [6448 6594])
+            ("dbus-error-access-denied" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".AccessDenied"))
+                nil [6596 6742])
+            ("dbus-error-disconnected" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".Disconnected"))
+                nil [6744 6883])
+            ("dbus-error-failed" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".Failed"))
+                nil [6885 7028])
+            ("dbus-error-invalid-args" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".InvalidArgs"))
+                nil [7030 7151])
+            ("dbus-error-no-reply" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".NoReply"))
+                nil [7153 7294])
+            ("dbus-error-property-read-only" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".PropertyReadOnly"))
+                nil [7296 7427])
+            ("dbus-error-service-unknown" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".ServiceUnknown"))
+                nil [7429 7593])
+            ("dbus-error-unknown-interface" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".UnknownInterface"))
+                nil [7595 7746])
+            ("dbus-error-unknown-method" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".UnknownMethod"))
+                nil [7748 7899])
+            ("dbus-error-unknown-object" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".UnknownObject"))
+                nil [7901 8027])
+            ("dbus-error-unknown-property" variable
+               (:constant-flag t
+                :default-value (concat dbus-error-dbus ".UnknownProperty"))
+                nil [8029 8171])
+            ("dbus-service-emacs" variable
+               (:constant-flag t
+                :default-value "org.gnu.Emacs")
+                nil [8196 8283])
+            ("dbus-path-emacs" variable
+               (:constant-flag t
+                :default-value "/org/gnu/Emacs")
+                nil [8285 8473])
+            ("dbus-interface-emacs" variable
+               (:constant-flag t
+                :default-value "org.gnu.Emacs")
+                nil [8475 8565])
+            ("dbus-ignore-errors" function (:arguments ("body")) nil [8605 8926])
+            ("dbus-event-error-functions" variable (:default-value '(dbus-notice-synchronous-call-errors)) nil [8928 9197])
+            ("dbus-return-values-table" variable (:default-value (make-hash-table :test #'equal)) nil [9199 9788])
+            ("dbus-call-method-handler" function (:arguments ("args")) nil [9790 10338])
+            ("dbus-notice-synchronous-call-errors" function (:arguments ("ev" "er")) nil [10340 10687])
+            ("dbus-call-method" function (:arguments ("bus" "service" "path" "interface" "method" "args")) nil [10689 15555])
+            ("dbus-call-method-asynchronously" function (:arguments ("bus" "service" "path" "interface" "method" "handler" "args")) nil [15557 18088])
+            ("dbus-send-signal" function (:arguments ("bus" "service" "path" "interface" "signal" "args")) nil [18090 19928])
+            ("dbus-method-return-internal" function (:arguments ("bus" "service" "serial" "args")) nil [19930 20624])
+            ("dbus-method-error-internal" function (:arguments ("bus" "service" "serial" "error-name" "args")) nil [20626 21419])
+            ("dbus-check-arguments" function (:arguments ("bus" "service" "args")) nil [21421 22130])
+            ("dbus-list-hash-table" function nil nil [22175 22535])
+            ("dbus-setenv" function (:arguments ("bus" "variable" "value")) nil [22537 23166])
+            ("dbus-register-service" function (:arguments ("bus" "service" "flags")) nil [23168 25034])
+            ("dbus-unregister-service" function (:arguments ("bus" "service")) nil [25036 26233])
+            ("dbus-register-signal" function (:arguments ("bus" "service" "path" "interface" "signal" "handler" "args")) nil [26235 31763])
+            ("dbus-register-method" function (:arguments ("bus" "service" "path" "interface" "method" "handler" "dont-register-service")) nil [31765 34015])
+            ("dbus-unregister-object" function (:arguments ("object")) nil [34017 36637])
+            ("dbus-string-to-byte-array" function (:arguments ("string")) nil [36669 36925])
+            ("dbus-byte-array-to-string" function (:arguments ("byte-array" "multibyte")) nil [36927 37378])
+            ("dbus-escape-as-identifier" function (:arguments ("string")) nil [37380 38242])
+            ("dbus-unescape-from-identifier" function (:arguments ("string")) nil [38244 38605])
+            ("dbus-check-event" function (:arguments ("event")) nil [38628 41358])
+            ("dbus-delete-types" function (:arguments ("args")) nil [41360 41817])
+            ("dbus-flatten-types" function (:arguments ("arg")) nil [41819 42357])
+            ("dbus-handle-event" function (:arguments ("event")) nil [42374 44611])
+            ("dbus-event-bus-name" function (:arguments ("event")) nil [44613 44961])
+            ("dbus-event-message-type" function (:arguments ("event")) nil [44963 45253])
+            ("dbus-event-serial-number" function (:arguments ("event")) nil [45255 45608])
+            ("dbus-event-service-name" function (:arguments ("event")) nil [45610 45901])
+            ("dbus-event-destination-name" function (:arguments ("event")) nil [45903 46199])
+            ("dbus-event-path-name" function (:arguments ("event")) nil [46201 46496])
+            ("dbus-event-interface-name" function (:arguments ("event")) nil [46498 46801])
+            ("dbus-event-member-name" function (:arguments ("event")) nil [46803 47142])
+            ("dbus-event-handler" function (:arguments ("event")) nil [47144 47417])
+            ("dbus-event-arguments" function (:arguments ("event")) nil [47419 47708])
+            ("dbus-list-activatable-names" function (:arguments ("bus")) nil [47741 48185])
+            ("dbus-list-names" function (:arguments ("bus")) nil [48187 48633])
+            ("dbus-list-known-names" function (:arguments ("bus")) nil [48635 48908])
+            ("dbus-list-queued-owners" function (:arguments ("bus" "service")) nil [48910 49298])
+            ("dbus-get-name-owner" function (:arguments ("bus" "service")) nil [49300 49633])
+            ("dbus-ping" function (:arguments ("bus" "service" "timeout")) nil [49635 50429])
+            ("dbus-peer-handler" function nil nil [50431 51228])
+            ("dbus--introspect-names" function (:arguments ("object" "tag")) nil [51258 51482])
+            ("dbus--introspect-name" function (:arguments ("object" "tag" "name")) nil [51484 51748])
+            ("dbus-introspect" function (:arguments ("bus" "service" "path")) nil [51750 52355])
+            ("defalias" code nil nil [52357 52674])
+            ("dbus-introspect-xml" function (:arguments ("bus" "service" "path")) nil [52676 53129])
+            ("dbus-introspect-get-attribute" function (:arguments ("object" "attribute")) nil [53131 53392])
+            ("dbus-introspect-get-node-names" function (:arguments ("bus" "service" "path")) nil [53394 53693])
+            ("dbus-introspect-get-all-nodes" function (:arguments ("bus" "service" "path")) nil [53695 54137])
+            ("dbus-introspect-get-interface-names" function (:arguments ("bus" "service" "path")) nil [54139 54658])
+            ("dbus-introspect-get-interface" function (:arguments ("bus" "service" "path" "interface")) nil [54660 55160])
+            ("dbus-introspect-get-method-names" function (:arguments ("bus" "service" "path" "interface")) nil [55162 55446])
+            ("dbus-introspect-get-method" function (:arguments ("bus" "service" "path" "interface" "method")) nil [55448 55933])
+            ("dbus-introspect-get-signal-names" function (:arguments ("bus" "service" "path" "interface")) nil [55935 56219])
+            ("dbus-introspect-get-signal" function (:arguments ("bus" "service" "path" "interface" "signal")) nil [56221 56702])
+            ("dbus-introspect-get-property-names" function (:arguments ("bus" "service" "path" "interface")) nil [56704 56994])
+            ("dbus-introspect-get-property" function (:arguments ("bus" "service" "path" "interface" "property")) nil [56996 57464])
+            ("dbus-introspect-get-annotation-names" function (:arguments ("bus" "service" "path" "interface" "name")) nil [57466 58113])
+            ("dbus-introspect-get-annotation" function (:arguments ("bus" "service" "path" "interface" "name" "annotation")) nil [58115 58758])
+            ("dbus-introspect-get-argument-names" function (:arguments ("bus" "service" "path" "interface" "name")) nil [58760 59231])
+            ("dbus-introspect-get-argument" function (:arguments ("bus" "service" "path" "interface" "name" "arg")) nil [59233 59666])
+            ("dbus-introspect-get-signature" function (:arguments ("bus" "service" "path" "interface" "name" "direction")) nil [59668 61114])
+            ("dbus-get-property" function (:arguments ("bus" "service" "path" "interface" "property")) nil [61141 61570])
+            ("dbus-set-property" function (:arguments ("bus" "service" "path" "interface" "property" "args")) nil [61572 62371])
+            ("dbus-get-all-properties" function (:arguments ("bus" "service" "path" "interface")) nil [62373 62940])
+            ("dbus-get-this-registered-property" function (:arguments ("bus" "_service" "path" "interface" "property")) nil [62942 63329])
+            ("dbus-get-other-registered-properties" function (:arguments ("bus" "_service" "path" "interface" "property")) nil [63331 63703])
+            ("dbus-register-property" function (:arguments ("bus" "service" "path" "interface" "property" "access" "args")) nil [63705 68059])
+            ("dbus-property-handler" function (:arguments ("args")) nil [68061 71929])
+            ("dbus-get-all-managed-objects" function (:arguments ("bus" "service" "path")) nil [71960 74359])
+            ("dbus-managed-objects-handler" function nil nil [74361 76460])
+            ("dbus-register-monitor" function (:arguments ("bus" "handler" "type" "sender" "destination" "path" "interface" "member")) nil [76462 78962])
+            ("dbus-monitor-method-call" variable
+               (:constant-flag t
+                :default-value (propertize "method-call" 'face 'font-lock-function-name-face))
+                nil [78964 79122])
+            ("dbus-monitor-method-return" variable
+               (:constant-flag t
+                :default-value (propertize "method-return" 'face 'font-lock-function-name-face))
+                nil [79124 79288])
+            ("dbus-monitor-error" variable
+               (:constant-flag t
+                :default-value (propertize "error" 'face 'font-lock-warning-face))
+                nil [79290 79422])
+            ("dbus-monitor-signal" variable
+               (:constant-flag t
+                :default-value (propertize "signal" 'face 'font-lock-type-face))
+                nil [79424 79558])
+            ("dbus-monitor-goto-serial" function (:user-visible-flag t) nil [79560 79826])
+            ("dbus-monitor-handler" function (:arguments ("_args")) nil [79828 84308])
+            ("dbus-monitor" function
+               (:user-visible-flag t
+                :arguments ("bus"))
+                nil [84325 84999])
+            ("dbus-handle-bus-disconnect" function nil nil [85001 86094])
+            ("dbus-init-bus" function (:arguments ("bus" "private")) nil [86096 87557])
+            ("dbus--init" function nil nil [87561 87885])
+            ("add-hook" code nil nil [87887 87933])
+            ("dbus--init" code nil nil [87934 87946])
+            ("dbus" package nil nil [87948 87963]))          
+      :file "dbus.el.gz"
+      :pointmax 88199
+      :fsize 20903
+      :lastmodtime '(25521 36546 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-4f70690c"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("dig" customgroup (:user-visible-flag t) nil [1165 1221])
+            ("dig-program" variable (:default-value "dig") nil [1223 1318])
+            ("dig-program-options" variable nil nil [1320 1431])
+            ("dig-dns-server" variable nil nil [1433 1576])
+            ("dig-font-lock-keywords" variable (:default-value '(("^;; [A-Z]+ SECTION:" 0 font-lock-keyword-face) ("^;;.*" 0 font-lock-comment-face) ("^; <<>>.*" 0 font-lock-type-face) ("^;.*" 0 font-lock-function-name-face))) nil [1578 1853])
+            ("dig-invoke" function (:arguments ("domain" "query-type" "query-class" "query-option" "dig-option" "server")) nil [1855 3037])
+            ("dig-extract-rr" function (:arguments ("domain" "type" "class")) nil [3039 3844])
+            ("dig-rr-get-pkix-cert" function (:arguments ("rr")) nil [3846 4240])
+            ("defvar-keymap" code nil nil [4242 4297])
+            ("define-derived-mode" code nil nil [4299 4544])
+            ("dig-exit" function (:user-visible-flag t) nil [4546 4640])
+            ("dig" function
+               (:user-visible-flag t
+                :arguments ("domain" "query-type" "query-class" "query-option" "dig-option" "server"))
+                nil [4657 5742])
+            ("dig-query" function (:arguments ("domain" "query-type" "query-class" "query-option" "dig-option" "server")) nil [5744 6385])
+            ("define-obsolete-function-alias" code nil nil [6387 6449])
+            ("dig" package nil nil [6451 6465]))          
+      :file "dig.el.gz"
+      :pointmax 6488
+      :fsize 2502
+      :lastmodtime '(25521 36546 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-4b879284"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("cl-lib" include nil nil [890 907])
+            ("mm-url" include nil nil [908 925])
+            ("puny" include nil nil [926 941])
+            ("shr" include nil nil [942 956])
+            ("text-property-search" include nil nil [957 988])
+            ("thingatpt" include nil nil [989 1009])
+            ("url" include nil nil [1010 1024])
+            ("url-queue" include nil nil [1025 1045])
+            ("url-file" include nil nil [1046 1065])
+            ("xdg" include nil nil [1066 1080])
+            ("subr-x" include nil nil [1100 1117])
+            ("eww" customgroup (:user-visible-flag t) nil [1120 1246])
+            ("eww-header-line-format" variable (:default-value "%t: %u") nil [1248 1423])
+            ("eww-search-prefix" variable (:default-value "https://duckduckgo.com/html/?q=") nil [1425 1569])
+            ("eww-use-browse-url" variable (:default-value "\\`mailto:") nil [1571 1799])
+            ("eww-default-download-directory" variable (:default-value "~/Downloads/") nil [1801 2013])
+            ("eww--download-directory" function nil nil [2015 2502])
+            ("eww-download-directory" variable (:default-value 'eww--download-directory) nil [2504 2787])
+            ("eww-suggest-uris" variable (:default-value '(eww-links-at-point thing-at-point-url-at-point eww-current-url)) nil [2804 3301])
+            ("eww-bookmarks-directory" variable (:default-value user-emacs-directory) nil [3303 3461])
+            ("eww-desktop-remove-duplicates" variable (:default-value t) nil [3463 3824])
+            ("eww-restore-desktop" variable nil nil [3826 4277])
+            ("eww-restore-reload-prompt" variable (:default-value "
+
+ *** Use \\[eww-reload] to reload this buffer. ***
+") nil [4279 4617])
+            ("eww-history-limit" variable (:default-value 50) nil [4619 4811])
+            ("eww-retrieve-command" variable nil nil [4813 5333])
+            ("eww-use-external-browser-for-content-type" variable (:default-value "\\`\\(video/\\|audio/\\|application/ogg\\)") nil [5335 5594])
+            ("eww-browse-url-new-window-is-tab" variable (:default-value 'tab-bar) nil [5596 6141])
+            ("eww-after-render-hook" variable nil nil [6143 6289])
+            ("eww-auto-rename-buffer" variable nil nil [6291 7337])
+            ("eww-buffer-name-length" variable (:default-value 40) nil [7339 7489])
+            ("eww-form-checkbox-selected-symbol" variable (:default-value "[X]") nil [7491 7857])
+            ("eww-form-checkbox-symbol" variable (:default-value "[ ]") nil [7859 8137])
+            ("eww-url-transformers" variable (:default-value '(eww-remove-tracking)) nil [8139 8433])
+            ("eww-form-submit" variable
+               (:default-value '((((type x w32 ns haiku pgtk) (class color)) :box (:line-width 2 :style released-button) :background "#808080" :foreground "black"))
+                :type "face")
+                nil [8435 8696])
+            ("eww-form-file" variable
+               (:default-value '((((type x w32 ns haiku pgtk) (class color)) :box (:line-width 2 :style released-button) :background "#808080" :foreground "black"))
+                :type "face")
+                nil [8698 8957])
+            ("eww-form-checkbox" variable
+               (:default-value '((((type x w32 ns haiku pgtk) (class color)) :box (:line-width 2 :style released-button) :background "lightgrey" :foreground "black"))
+                :type "face")
+                nil [8959 9224])
+            ("eww-form-select" variable
+               (:default-value '((((type x w32 ns haiku pgtk) (class color)) :box (:line-width 2 :style released-button) :background "lightgrey" :foreground "black"))
+                :type "face")
+                nil [9226 9489])
+            ("eww-form-text" variable
+               (:default-value '((t :background "#505050" :foreground "white" :box (:line-width 1)))
+                :type "face")
+                nil [9491 9662])
+            ("eww-form-textarea" variable
+               (:default-value '((t :background "#C0C0C0" :foreground "black" :box (:line-width 1)))
+                :type "face")
+                nil [9664 9843])
+            ("eww-invalid-certificate" variable
+               (:default-value '((default :weight bold) (((class color)) :foreground "red"))
+                :type "face")
+                nil [9845 10028])
+            ("eww-valid-certificate" variable
+               (:default-value '((default :weight bold) (((class color)) :foreground "ForestGreen"))
+                :type "face")
+                nil [10030 10217])
+            ("eww-data" variable nil nil [10219 10240])
+            ("eww-history" variable nil nil [10241 10265])
+            ("eww-history-position" variable nil nil [10266 10297])
+            ("eww-prompt-history" variable nil nil [10298 10329])
+            ("eww-local-regex" variable (:default-value "localhost") nil [10331 10443])
+            ("eww-accept-content-types" variable (:default-value "text/html, text/plain, text/sgml, text/css, application/xhtml+xml, */*;q=0.01") nil [10445 10607])
+            ("defvar-keymap" code nil nil [10609 10716])
+            ("defvar-keymap" code nil nil [10718 10805])
+            ("eww-suggested-uris" function nil nil [10807 11238])
+            ("eww-browse" function (:user-visible-flag t) nil [11255 11776])
+            ("eww" function
+               (:user-visible-flag t
+                :arguments ("url" "new-buffer" "buffer"))
+                nil [11794 14060])
+            ("eww-retrieve" function (:arguments ("url" "callback" "cbargs")) nil [14062 15399])
+            ("function-put" code nil nil [15401 15455])
+            ("eww--dwim-expand-url" function (:arguments ("url")) nil [15457 16710])
+            ("eww--preprocess-html" function (:arguments ("start" "end")) nil [16712 17139])
+            ("eww-open-file" function
+               (:user-visible-flag t
+                :arguments ("file"))
+                nil [17200 17452])
+            ("eww--file-buffer" function (:arguments ("file")) nil [17454 17810])
+            ("eww-search-words" function (:user-visible-flag t) nil [17827 18407])
+            ("eww-open-in-new-buffer" function (:user-visible-flag t) nil [18409 19146])
+            ("eww-html-p" function (:arguments ("content-type")) nil [19148 19380])
+            ("eww--rename-buffer" function nil nil [19382 20412])
+            ("eww-render" function (:arguments ("status" "url" "point" "buffer" "encode")) nil [20414 22846])
+            ("eww-parse-headers" function nil nil [22848 23184])
+            ("eww-detect-charset" function (:arguments ("html-p")) nil [23186 23543])
+            ("declare-function" code nil nil [23545 23648])
+            ("eww-display-html" function (:arguments ("charset" "url" "document" "point" "buffer" "encode")) nil [23650 26265])
+            ("eww-handle-link" function (:arguments ("dom")) nil [26267 27207])
+            ("eww-redirect-level" variable (:default-value 1) nil [27209 27238])
+            ("eww-tag-meta" function (:arguments ("dom")) nil [27240 28211])
+            ("eww-tag-link" function (:arguments ("dom")) nil [28213 28283])
+            ("eww-tag-a" function (:arguments ("dom")) nil [28285 28653])
+            ("eww--limit-string-pixelwise" function (:arguments ("string" "pixels")) nil [28655 29068])
+            ("eww--pixel-column" function nil nil [29070 29531])
+            ("eww-update-header-line-format" function nil nil [29533 31903])
+            ("eww--after-page-change" function nil nil [31905 31995])
+            ("eww-tag-title" function (:arguments ("dom")) nil [31997 32200])
+            ("eww-display-raw" function (:arguments ("buffer" "encode")) nil [32202 32637])
+            ("eww-display-image" function (:arguments ("buffer")) nil [32639 32937])
+            ("declare-function" code nil nil [32939 32992])
+            ("eww-display-pdf" function nil nil [32993 33529])
+            ("eww-setup-buffer" function nil nil [33531 33951])
+            ("eww-current-url" function nil nil [33953 34075])
+            ("eww-links-at-point" function nil nil [34077 34284])
+            ("eww-view-source" function (:user-visible-flag t) nil [34286 35242])
+            ("eww-toggle-paragraph-direction" function (:user-visible-flag t) nil [35244 35810])
+            ("eww-readable" function (:user-visible-flag t) nil [35812 36830])
+            ("eww-score-readability" function (:arguments ("node")) nil [36832 37604])
+            ("eww-highest-readability" function (:arguments ("node")) nil [37606 38168])
+            ("defvar-keymap" code nil nil [38170 40310])
+            ("eww-context-menu" function (:arguments ("menu" "click")) nil [40312 41718])
+            ("eww-tool-bar-map" variable (:default-value (let ((map (make-sparse-keymap))) (dolist (tool-bar-item '((quit-window . "close") (eww-reload . "refresh") (eww-back-url . "left-arrow") (eww-forward-url . "right-arrow") (eww-view-source . "show") (eww-copy-page-url . "copy") (eww-add-bookmark . "bookmark_add"))) (tool-bar-local-item-from-menu (car tool-bar-item) (cdr tool-bar-item) map eww-mode-map)) map)) nil [41720 42268])
+            ("define-derived-mode" code nil nil [42326 43367])
+            ("text-scale-mode" variable nil nil [43369 43393])
+            ("text-scale-mode-amount" variable nil nil [43394 43425])
+            ("eww--rescale-images" function nil nil [43426 44093])
+            ("eww--url-at-point" function nil nil [44095 44202])
+            ("eww-browse-url" function (:arguments ("url" "new-window")) nil [44219 45337])
+            ("function-put" code nil nil [45339 45404])
+            ("eww-back-url" function (:user-visible-flag t) nil [45406 45737])
+            ("eww-forward-url" function (:user-visible-flag t) nil [45739 45988])
+            ("eww-restore-history" function (:arguments ("elem")) nil [45990 46426])
+            ("eww-next-url" function (:user-visible-flag t) nil [46428 46765])
+            ("eww-previous-url" function (:user-visible-flag t) nil [46767 47132])
+            ("eww-up-url" function (:user-visible-flag t) nil [47134 47457])
+            ("eww-top-url" function (:user-visible-flag t) nil [47459 47910])
+            ("eww-reload" function
+               (:user-visible-flag t
+                :arguments ("local" "encode"))
+                nil [47912 48969])
+            ("eww-form" variable nil nil [48989 49010])
+            ("defvar-keymap" code nil nil [49012 49088])
+            ("defvar-keymap" code nil nil [49090 49172])
+            ("defvar-keymap" code nil nil [49174 49291])
+            ("defvar-keymap" code nil nil [49293 49545])
+            ("defvar-keymap" code nil nil [49547 49747])
+            ("defvar-keymap" code nil nil [49749 49928])
+            ("eww-beginning-of-text" function (:user-visible-flag t) nil [49930 50072])
+            ("eww-end-of-text" function (:user-visible-flag t) nil [50074 50399])
+            ("eww-beginning-of-field" function nil nil [50401 50666])
+            ("eww-end-of-field" function nil nil [50668 50773])
+            ("eww-tag-form" function (:arguments ("dom")) nil [50775 51145])
+            ("eww-form-submit" function (:arguments ("dom")) nil [51147 51777])
+            ("eww-form-checkbox" function (:arguments ("dom")) nil [51779 52337])
+            ("eww-form-file" function (:arguments ("dom")) nil [52339 52888])
+            ("eww-select-file" function (:user-visible-flag t) nil [52890 53265])
+            ("eww-form-text" function (:arguments ("dom")) nil [53267 54257])
+            ("eww-text-input-types" variable
+               (:constant-flag t
+                :default-value '("text" "password" "textarea" "color" "date" "datetime" "datetime-local" "email" "month" "number" "search" "tel" "time" "url" "week"))
+                nil [54259 54653])
+            ("eww-process-text-input" function (:arguments ("beg" "end" "replace-length")) nil [54655 56522])
+            ("eww-tag-textarea" function (:arguments ("dom")) nil [56524 57662])
+            ("eww-tag-input" function (:arguments ("dom")) nil [57664 58670])
+            ("eww-tag-select" function (:arguments ("dom")) nil [58672 59881])
+            ("eww-select-display" function (:arguments ("select")) nil [59883 60162])
+            ("eww--form-items" function (:arguments ("form")) nil [60164 60331])
+            ("eww-change-select" function
+               (:user-visible-flag t
+                :arguments ("event"))
+                nil [60333 60967])
+            ("eww-update-field" function (:arguments ("string" "offset")) nil [60969 61521])
+            ("eww-toggle-checkbox" function (:user-visible-flag t) nil [61523 62510])
+            ("eww-inputs" function (:arguments ("form")) nil [62512 62974])
+            ("eww-size-text-inputs" function nil nil [62976 63461])
+            ("eww-input-value" function (:arguments ("input")) nil [63463 63868])
+            ("eww-submit" function (:user-visible-flag t) nil [63870 66891])
+            ("eww-browse-with-external-browser" function
+               (:user-visible-flag t
+                :arguments ("url"))
+                nil [66893 67217])
+            ("eww-remove-tracking" function (:arguments ("url")) nil [67219 67354])
+            ("eww--transform-url" function (:arguments ("url")) nil [67356 67520])
+            ("eww-follow-link" function
+               (:user-visible-flag t
+                :arguments ("external" "mouse-event"))
+                nil [67522 68964])
+            ("eww-same-page-p" function (:arguments ("url1" "url2")) nil [68966 69308])
+            ("eww-copy-page-url" function (:user-visible-flag t) nil [69310 69506])
+            ("eww-download" function (:user-visible-flag t) nil [69508 70077])
+            ("eww-download-callback" function (:arguments ("status" "url" "dir")) nil [70079 70627])
+            ("eww-decode-url-file-name" function (:arguments ("string")) nil [70629 71617])
+            ("eww-make-unique-file-name" function (:arguments ("file" "directory")) nil [71619 72179])
+            ("eww-set-character-encoding" function
+               (:user-visible-flag t
+                :arguments ("charset"))
+                nil [72181 72445])
+            ("eww-switch-to-buffer" function (:user-visible-flag t) nil [72447 73265])
+            ("eww-toggle-fonts" function (:user-visible-flag t) nil [73267 73528])
+            ("eww-toggle-colors" function (:user-visible-flag t) nil [73530 73767])
+            ("eww-toggle-images" function (:user-visible-flag t) nil [73769 74017])
+            ("eww-bookmarks" variable nil nil [74039 74065])
+            ("eww-add-bookmark" function (:user-visible-flag t) nil [74067 74775])
+            ("eww-write-bookmarks" function nil nil [74777 75062])
+            ("eww-read-bookmarks" function (:arguments ("error-out")) nil [75064 75568])
+            ("eww-list-bookmarks" function (:user-visible-flag t) nil [75585 75743])
+            ("eww-bookmark-prepare" function nil nil [75745 76417])
+            ("eww-bookmark-kill-ring" variable nil nil [76419 76454])
+            ("eww-bookmark-kill" function (:user-visible-flag t) nil [76456 76953])
+            ("eww-bookmark-yank" function (:user-visible-flag t) nil [76955 77572])
+            ("eww-bookmark-browse" function (:user-visible-flag t) nil [77574 77907])
+            ("eww-next-bookmark" function (:user-visible-flag t) nil [77909 78484])
+            ("eww-previous-bookmark" function (:user-visible-flag t) nil [78486 79155])
+            ("defvar-keymap" code nil nil [79157 79654])
+            ("define-derived-mode" code nil nil [79656 79852])
+            ("eww-save-history" function nil nil [79872 80122])
+            ("eww-current-buffer" variable nil nil [80124 80151])
+            ("eww-list-histories" function (:user-visible-flag t) nil [80153 81287])
+            ("eww-history-browse" function (:user-visible-flag t) nil [81289 81695])
+            ("defvar-keymap" code nil nil [81697 82016])
+            ("define-derived-mode" code nil nil [82018 82214])
+            ("eww-list-buffers" function (:user-visible-flag t) nil [82238 84039])
+            ("eww-buffer-select" function (:user-visible-flag t) nil [84041 84363])
+            ("eww-buffer-show" function nil nil [84365 84698])
+            ("eww-buffer-show-next" function (:user-visible-flag t) nil [84700 84905])
+            ("eww-buffer-show-previous" function (:user-visible-flag t) nil [84907 85145])
+            ("eww-buffer-kill" function (:user-visible-flag t) nil [85147 85568])
+            ("defvar-keymap" code nil nil [85570 86046])
+            ("define-derived-mode" code nil nil [86048 86238])
+            ("eww-desktop-data-save" variable (:default-value '(:url :title :point)) nil [86261 86419])
+            ("eww-desktop-data-1" function (:arguments ("alist")) nil [86421 86700])
+            ("eww-desktop-history-duplicate" function (:arguments ("a" "b")) nil [86702 86981])
+            ("eww-desktop-misc-data" function (:arguments ("_directory")) nil [86983 87797])
+            ("eww-restore-desktop" function (:arguments ("file-name" "buffer-name" "misc-data")) nil [87799 88778])
+            ("add-to-list" code nil nil [88780 88845])
+            ("add-to-list" code nil nil [88846 88936])
+            ("eww-isearch-next-buffer" function (:arguments ("_buffer" "wrap")) nil [88959 89294])
+            ("declare-function" code nil nil [89321 89433])
+            ("declare-function" code nil nil [89434 89497])
+            ("eww-bookmark-name" function nil nil [89499 89620])
+            ("eww-bookmark-make-record" function nil nil [89622 89850])
+            ("eww-bookmark-jump" function (:arguments ("bookmark")) nil [89867 89996])
+            ("put" code nil nil [89998 90051])
+            ("eww" package nil nil [90053 90067]))          
+      :file "eww.el.gz"
+      :pointmax 90090
+      :fsize 22672
+      :lastmodtime '(25666 14220 0 0)
+      :unmatched-syntax '((close-paren 1117 . 1118) (symbol 1082 . 1099) (open-paren 1081 . 1082))))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!net!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/hyperbole/hui-dired-sidebar.el

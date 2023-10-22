@@ -1,0 +1,38 @@
+;; Object semanticdb-project-database-file-4b94b0e4
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-4b94b0e4"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-4742af96"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("cl-lib" include nil nil [2404 2421])
+            ("exif-tag-alist" variable (:default-value '((11 processing-software) (270 description) (271 make) (272 model) (274 orientation) (282 x-resolution) (283 y-resolution) (296 resolution-unit) (305 software) (306 date-time) (315 artist) (33432 copyright))) nil [2423 2742])
+            ("exif--orientation" variable
+               (:constant-flag t
+                :default-value '((1 0 nil) (2 0 t) (3 180 nil) (4 180 t) (5 90 nil) (6 90 t) (7 270 nil) (8 270 t)))
+                nil [2744 3004])
+            ("define-error" code nil nil [3006 3052])
+            ("exif-parse-file" function (:arguments ("file")) nil [3054 3465])
+            ("exif-parse-buffer" function (:arguments ("buffer")) nil [3467 4460])
+            ("exif-field" function (:arguments ("field" "data")) nil [4462 4847])
+            ("exif-orientation" function (:arguments ("exif")) nil [4849 5081])
+            ("exif--parse-jpeg" function nil nil [5083 5621])
+            ("exif--parse-exif-chunk" function (:arguments ("data")) nil [5623 6857])
+            ("exif--field-format" function (:arguments ("number")) nil [6859 7068])
+            ("exif--parse-directory" function (:arguments ("le")) nil [7070 9919])
+            ("exif--direct-ascii-value" function (:arguments ("value" "nbytes" "le")) nil [9921 10566])
+            ("exif--process-value" function (:arguments ("value" "type" "le")) nil [10568 11056])
+            ("exif--read-chunk" function (:arguments ("bytes")) nil [11058 11403])
+            ("exif--read-number-be" function (:arguments ("bytes")) nil [11405 11831])
+            ("exif--read-number-le" function (:arguments ("bytes")) nil [11833 12271])
+            ("exif--read-number" function (:arguments ("bytes" "little-endian")) nil [12273 12588])
+            ("exif" package nil nil [12590 12605]))          
+      :file "exif.el.gz"
+      :pointmax 12629
+      :fsize 3860
+      :lastmodtime '(25585 645 0 0)
+      :unmatched-syntax nil))
+  :file "!Applications!Emacs.app!Contents!Resources!lisp!image!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

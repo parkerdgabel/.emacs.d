@@ -1,0 +1,53 @@
+;; Object semanticdb-project-database-file-4b4be49e
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-4b4be49e"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-4687efda"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("doom-themes" include nil nil [282 304])
+            ("doom-ayu-mirage-theme" customgroup (:user-visible-flag t) nil [325 428])
+            ("doom-ayu-mirage-brighter-modeline" variable nil nil [430 599])
+            ("doom-ayu-mirage-brighter-comments" variable nil nil [601 766])
+            ("doom-ayu-mirage-comment-bg" variable (:default-value doom-ayu-mirage-brighter-comments) nil [768 981])
+            ("doom-ayu-mirage-padded-modeline" variable (:default-value doom-themes-padded-modeline) nil [983 1223])
+            ("def-doom-theme" code nil nil [1251 8892]))          
+      :file "doom-ayu-mirage-theme.el"
+      :pointmax 8933
+      :fsize 8932
+      :lastmodtime '(25869 48049 553807 94000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-43fc95fc"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("doom-themes" include nil nil [281 303])
+            ("doom-ayu-light-theme" customgroup (:user-visible-flag t) nil [324 425])
+            ("doom-ayu-light-brighter-modeline" variable nil nil [427 594])
+            ("doom-ayu-light-brighter-comments" variable nil nil [596 759])
+            ("doom-ayu-light-comment-bg" variable (:default-value doom-ayu-light-brighter-comments) nil [761 971])
+            ("doom-ayu-light-padded-modeline" variable (:default-value doom-themes-padded-modeline) nil [973 1211])
+            ("def-doom-theme" code nil nil [1239 8942]))          
+      :file "doom-ayu-light-theme.el"
+      :pointmax 8982
+      :fsize 8981
+      :lastmodtime '(25869 48049 553740 261000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-46614fc2"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("doom-themes" include nil nil [294 316])
+            ("doom-oksolar-dark-theme" customgroup (:user-visible-flag t) nil [337 444])
+            ("doom-oksolar-dark-brighter-modeline" variable nil nil [446 619])
+            ("doom-oksolar-dark-brighter-comments" variable nil nil [621 790])
+            ("doom-oksolar-dark-brighter-text" variable nil nil [792 937])
+            ("doom-oksolar-dark-padded-modeline" variable (:default-value doom-themes-padded-modeline) nil [939 1183])
+            ("def-doom-theme" code nil nil [1211 7852]))          
+      :file "doom-oksolar-dark-theme.el"
+      :pointmax 7895
+      :fsize 7894
+      :lastmodtime '(25869 48049 557620 199000)
+      :unmatched-syntax nil))
+  :file "!Users!parkergabel!.emacs.d!straight!repos!themes!themes!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

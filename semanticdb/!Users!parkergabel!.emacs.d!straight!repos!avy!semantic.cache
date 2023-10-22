@@ -1,0 +1,304 @@
+;; Object semanticdb-project-database-file-464f046c
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-464f046c"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-536120ae"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("cl-lib" include nil nil [2286 2303])
+            ("ring" include nil nil [2304 2319])
+            ("avy" customgroup (:user-visible-flag t) nil [2339 2427])
+            ("avy-keys" variable (:default-value '(97 115 100 102 103 104 106 107 108)) nil [2429 3104])
+            ("avy--key-type" variable
+               (:constant-flag t
+                :default-value '(choice :tag "Command" (const avy-goto-char) (const avy-goto-char-2) (const avy-isearch) (const avy-goto-line) (const avy-goto-subword-0) (const avy-goto-subword-1) (const avy-goto-word-0) (const avy-goto-word-1) (const avy-copy-line) (const avy-copy-region) (const avy-move-line) (const avy-move-region) (const avy-kill-whole-line) (const avy-kill-region) (const avy-kill-ring-save-whole-line) (const avy-kill-ring-save-region) (function :tag "Other command")))
+                nil [3106 3663])
+            ("avy-keys-alist" variable nil nil [3665 3880])
+            ("avy-orders-alist" variable (:default-value '((avy-goto-char . avy-order-closest))) nil [3882 4133])
+            ("avy-words" variable (:default-value '("am" "by" "if" "is" "it" "my" "ox" "up" "ace" "act" "add" "age" "ago" "aim" "air" "ale" "all" "and" "ant" "any" "ape" "apt" "arc" "are" "arm" "art" "ash" "ate" "awe" "axe" "bad" "bag" "ban" "bar" "bat" "bay" "bed" "bee" "beg" "bet" "bid" "big" "bit" "bob" "bot" "bow" "box" "boy" "but" "cab" "can" "cap" "car" "cat" "cog" "cop" "cow" "cry" "cup" "cut" "day" "dew" "did" "die" "dig" "dim" "dip" "dog" "dot" "dry" "dub" "dug" "dye" "ear" "eat" "eel" "egg" "ego" "elf" "eve" "eye" "fan" "far" "fat" "fax" "fee" "few" "fin" "fit" "fix" "flu" "fly" "foe" "fog" "for" "fox" "fry" "fun" "fur" "gag" "gap" "gas" "gel" "gem" "get" "gig" "gin" "gnu" "god" "got" "gum" "gun" "gut" "guy" "gym" "had" "hag" "ham" "has" "hat" "her" "hid" "him" "hip" "his" "hit" "hop" "hot" "how" "hub" "hue" "hug" "hut" "ice" "icy" "imp" "ink" "inn" "ion" "ire" "ivy" "jab" "jam" "jar" "jaw" "jet" "job" "jog" "joy" "key" "kid" "kit" "lag" "lap" "lay" "let" "lid" "lie" "lip" "lit" "lob" "log" "lot" "low" "mad" "man" "map" "mat" "may" "men" "met" "mix" "mob" "mop" "mud" "mug" "nag" "nap" "new" "nil" "nod" "nor" "not" "now" "nun" "oak" "odd" "off" "oil" "old" "one" "orb" "ore" "ork" "our" "out" "owl" "own" "pad" "pan" "par" "pat" "paw" "pay" "pea" "pen" "pet" "pig" "pin" "pit" "pod" "pot" "pry" "pub" "pun" "put" "rag" "ram" "ran" "rat" "raw" "ray" "red" "rib" "rim" "rip" "rob" "rod" "rot" "row" "rub" "rug" "rum" "run" "sad" "sat" "saw" "say" "sea" "see" "sew" "she" "shy" "sin" "sip" "sit" "six" "ski" "sky" "sly" "sob" "son" "soy" "spy" "sum" "sun" "tab" "tad" "tag" "tan" "tap" "tar" "tax" "tea" "the" "tie" "tin" "tip" "toe" "ton" "too" "top" "toy" "try" "tub" "two" "urn" "use" "van" "war" "was" "wax" "way" "web" "wed" "wet" "who" "why" "wig" "win" "wit" "woe" "won" "wry" "you" "zap" "zip" "zoo")) nil [4135 6299])
+            ("avy-style" variable (:default-value 'at-full) nil [6301 6676])
+            ("avy-styles-alist" variable nil nil [6678 8015])
+            ("avy-dispatch-alist" variable (:default-value '((120 . avy-action-kill-move) (88 . avy-action-kill-stay) (116 . avy-action-teleport) (109 . avy-action-mark) (110 . avy-action-copy) (121 . avy-action-yank) (89 . avy-action-yank-line) (105 . avy-action-ispell) (122 . avy-action-zap-to-char))) nil [8017 8877])
+            ("avy-background" variable nil nil [8879 8998])
+            ("avy-all-windows" variable (:default-value t) nil [9000 9228])
+            ("avy-case-fold-search" variable (:default-value t) nil [9230 9325])
+            ("avy-word-punc-regexp" variable (:default-value "[!-/:-@[-`{-~]") nil [9327 9585])
+            ("avy-goto-word-0-regexp" variable (:default-value "\\b\\sw") nil [9587 9894])
+            ("avy-ignored-modes" variable (:default-value '(image-mode doc-view-mode pdf-view-mode)) nil [9896 10098])
+            ("avy-single-candidate-jump" variable (:default-value t) nil [10100 10218])
+            ("avy-del-last-char-by" variable (:default-value '(8 127)) nil [10220 10425])
+            ("avy-escape-chars" variable (:default-value '(27 7)) nil [10427 10539])
+            ("avy-ring" variable (:default-value (make-ring 20)) nil [10541 10612])
+            ("avy-translate-char-function" variable (:default-value nil) nil [10614 10802])
+            ("avy-lead-face-0" variable
+               (:default-value '((t (:foreground "white" :background "#4f57f9")))
+                :type "face")
+                nil [10804 10937])
+            ("avy-lead-face-1" variable
+               (:default-value '((t (:foreground "white" :background "gray")))
+                :type "face")
+                nil [10939 11055])
+            ("avy-lead-face-2" variable
+               (:default-value '((t (:foreground "white" :background "#f86bf3")))
+                :type "face")
+                nil [11057 11168])
+            ("avy-lead-face" variable
+               (:default-value '((t (:foreground "white" :background "#e52b50")))
+                :type "face")
+                nil [11170 11283])
+            ("avy-background-face" variable
+               (:default-value '((t (:foreground "gray40")))
+                :type "face")
+                nil [11285 11401])
+            ("avy-goto-char-timer-face" variable
+               (:default-value '((t (:inherit highlight)))
+                :type "face")
+                nil [11403 11538])
+            ("avy-lead-faces" variable
+               (:constant-flag t
+                :default-value '(avy-lead-face avy-lead-face-0 avy-lead-face-2 avy-lead-face avy-lead-face-0 avy-lead-face-2))
+                nil [11540 11841])
+            ("avy-key-to-char-alist" variable (:default-value '((left . 9664) (right . 9654) (up . 9650) (down . 9660) (prior . 9651) (next . 9661))) nil [11843 12308])
+            ("avy-multipop" function (:arguments ("lst" "n")) nil [12334 12604])
+            ("avy--de-bruijn" function (:arguments ("keys" "n")) nil [12606 13387])
+            ("avy--path-alist-1" function (:arguments ("lst" "seq-len" "keys")) nil [13389 15469])
+            ("avy-order-closest" function (:arguments ("x")) nil [15471 15596])
+            ("avy-command" variable nil nil [15598 15701])
+            ("avy-tree" function (:arguments ("lst" "keys")) nil [15703 16661])
+            ("avy-subdiv" function (:arguments ("n" "b")) nil [16663 17017])
+            ("avy-traverse" function (:arguments ("tree" "walker" "recur-key")) nil [17019 17481])
+            ("avy-action" variable nil nil [17483 17549])
+            ("avy-action-oneshot" variable nil nil [17551 17630])
+            ("avy-handler-default" function (:arguments ("char")) nil [17632 18348])
+            ("avy-show-dispatch-help" function nil nil [18350 18841])
+            ("avy-handler-function" variable (:default-value 'avy-handler-default) nil [18843 18952])
+            ("avy-current-path" variable nil nil [18954 19039])
+            ("avy-mouse-event-window" function (:arguments ("char")) nil [19041 19476])
+            ("avy-read" function (:arguments ("tree" "display-fn" "cleanup-fn")) nil [19478 20889])
+            ("avy-read-de-bruijn" function (:arguments ("lst" "keys")) nil [20891 22477])
+            ("avy-read-words" function (:arguments ("lst" "words")) nil [22479 24609])
+            ("avy-window-list" function nil nil [24621 24997])
+            ("avy-all-windows-alt" variable nil nil [24999 25293])
+            ("avy-dowindows" function (:arguments ("flip" "body")) nil [25295 25750])
+            ("avy-resume" function (:user-visible-flag t) nil [25752 25872])
+            ("avy-with" function (:arguments ("command" "body")) nil [25874 26539])
+            ("avy-action-goto" function (:arguments ("pt")) nil [26541 26765])
+            ("avy-forward-item" function nil nil [26767 26882])
+            ("avy-action-mark" function (:arguments ("pt")) nil [26884 26992])
+            ("avy-action-copy" function (:arguments ("pt")) nil [26994 27393])
+            ("avy-action-yank" function (:arguments ("pt")) nil [27395 27510])
+            ("avy-action-yank-line" function (:arguments ("pt")) nil [27512 27660])
+            ("avy-action-kill-move" function (:arguments ("pt")) nil [27662 27848])
+            ("avy-action-kill-stay" function (:arguments ("pt")) nil [27850 28114])
+            ("avy-action-zap-to-char" function (:arguments ("pt")) nil [28116 28263])
+            ("avy-action-teleport" function (:arguments ("pt")) nil [28265 28477])
+            ("declare-function" code nil nil [28479 28543])
+            ("avy-flyspell-correct-function" variable (:default-value nil) nil [28545 28733])
+            ("avy-action-ispell" function (:arguments ("pt")) nil [28735 29218])
+            ("avy-pre-action" variable (:default-value nil) nil [29220 29320])
+            ("avy-pre-action-default" function (:arguments ("res")) nil [29322 29629])
+            ("avy--process-1" function (:arguments ("candidates" "overlay-fn" "cleanup-fn")) nil [29631 30526])
+            ("avy-last-candidates" variable nil nil [30528 30595])
+            ("avy--last-candidates-cycle" function (:arguments ("advancer")) nil [30597 31172])
+            ("avy-prev" function (:user-visible-flag t) nil [31174 31470])
+            ("avy-next" function (:user-visible-flag t) nil [31472 31780])
+            ("avy-process" function (:arguments ("candidates" "overlay-fn" "cleanup-fn")) nil [31797 33208])
+            ("define-obsolete-function-alias" code nil nil [33210 33279])
+            ("avy--overlays-back" variable nil nil [33281 33362])
+            ("avy--make-backgrounds" function (:arguments ("wnd-list")) nil [33364 33913])
+            ("avy--done" function nil nil [33915 34065])
+            ("avy--visible-p" function (:arguments ("s")) nil [34067 34272])
+            ("avy--next-visible-point" function nil nil [34274 34520])
+            ("avy--next-invisible-point" function nil nil [34522 34761])
+            ("avy--find-visible-regions" function (:arguments ("rbeg" "rend")) nil [34763 35366])
+            ("avy--regex-candidates" function (:arguments ("regex" "beg" "end" "pred" "group")) nil [35368 36549])
+            ("avy--overlay-offset" variable nil nil [36551 36624])
+            ("avy--overlays-lead" variable nil nil [36626 36694])
+            ("avy--remove-leading-chars" function nil nil [36696 36843])
+            ("avy--old-str" function (:arguments ("pt" "wnd")) nil [36845 37107])
+            ("avy--overlay" function (:arguments ("str" "beg" "end" "wnd" "compose-fn")) nil [37109 38610])
+            ("avy-highlight-first" variable nil nil [38612 38782])
+            ("avy--key-to-char" function (:arguments ("c")) nil [38784 39036])
+            ("avy-candidate-beg" function (:arguments ("leaf")) nil [39038 39232])
+            ("avy-candidate-end" function (:arguments ("leaf")) nil [39234 39426])
+            ("avy-candidate-wnd" function (:arguments ("leaf")) nil [39428 39551])
+            ("avy--overlay-pre" function (:arguments ("path" "leaf")) nil [39553 40368])
+            ("avy--overlay-at" function (:arguments ("path" "leaf")) nil [40370 41043])
+            ("avy--overlay-at-full" function (:arguments ("path" "leaf")) nil [41045 43699])
+            ("avy--overlay-post" function (:arguments ("path" "leaf")) nil [43701 44367])
+            ("avy--update-offset-and-str" function (:arguments ("offset" "str" "lep")) nil [44369 46081])
+            ("avy--style-fn" function (:arguments ("style")) nil [46083 46441])
+            ("avy-jump" function (:arguments ("regex" "window-flip" "beg" "end" "action" "pred" "group")) nil [46443 47193])
+            ("avy--generic-jump" function (:arguments ("regex" "window-flip" "beg" "end")) nil [47195 47674])
+            ("avy-goto-char" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [47704 48078])
+            ("avy-goto-char-in-line" function
+               (:user-visible-flag t
+                :arguments ("char"))
+                nil [48095 48379])
+            ("avy-goto-char-2" function
+               (:user-visible-flag t
+                :arguments ("char1" "char2" "arg" "beg" "end"))
+                nil [48396 49555])
+            ("avy-goto-char-2-above" function
+               (:user-visible-flag t
+                :arguments ("char1" "char2" "arg"))
+                nil [49572 50158])
+            ("avy-goto-char-2-below" function
+               (:user-visible-flag t
+                :arguments ("char1" "char2" "arg"))
+                nil [50175 50783])
+            ("avy-isearch" function (:user-visible-flag t) nil [50800 51232])
+            ("avy-goto-word-0" function
+               (:user-visible-flag t
+                :arguments ("arg" "beg" "end"))
+                nil [51249 51658])
+            ("avy-goto-whitespace-end" function
+               (:user-visible-flag t
+                :arguments ("arg" "beg" "end"))
+                nil [51675 52178])
+            ("avy-goto-word-0-above" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [52180 52482])
+            ("avy-goto-word-0-below" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [52484 52802])
+            ("avy-goto-whitespace-end-above" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [52804 53148])
+            ("avy-goto-whitespace-end-below" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [53150 53514])
+            ("avy-goto-word-1" function
+               (:user-visible-flag t
+                :arguments ("char" "arg" "beg" "end" "symbol"))
+                nil [53531 54595])
+            ("avy-goto-word-1-above" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [54612 55117])
+            ("avy-goto-word-1-below" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [55134 55661])
+            ("avy-goto-symbol-1" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [55678 56052])
+            ("avy-goto-symbol-1-above" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [56069 56590])
+            ("avy-goto-symbol-1-below" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [56607 57150])
+            ("declare-function" code nil nil [57152 57197])
+            ("subword-backward-regexp" variable nil nil [57198 57230])
+            ("avy-subword-extra-word-chars" variable (:default-value '(123 61 125 42 58 62 60)) nil [57232 57460])
+            ("avy-goto-subword-0" function
+               (:user-visible-flag t
+                :arguments ("arg" "predicate" "beg" "end"))
+                nil [57477 59285])
+            ("avy-goto-subword-1" function
+               (:user-visible-flag t
+                :arguments ("char" "arg"))
+                nil [59302 59794])
+            ("avy-goto-word-or-subword-1" function (:user-visible-flag t) nil [59811 60098])
+            ("visual-line-mode" variable nil nil [60100 60125])
+            ("avy-indent-line-overlay" variable nil nil [60127 60296])
+            ("avy--line-cands" function (:arguments ("arg" "beg" "end" "bottom-up")) nil [60298 61608])
+            ("avy--linum-strings" function nil nil [61610 62134])
+            ("linum-available" variable nil nil [62136 62160])
+            ("linum-overlays" variable nil nil [62161 62184])
+            ("linum-format" variable nil nil [62185 62206])
+            ("declare-function" code nil nil [62207 62251])
+            ("declare-function" code nil nil [62252 62289])
+            ("define-minor-mode" code nil nil [62291 62639])
+            ("avy--linum-update-window" function (:arguments ("_" "win")) nil [62641 65095])
+            ("avy--line" function (:arguments ("arg" "beg" "end" "bottom-up")) nil [65097 65703])
+            ("avy-goto-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [65720 67016])
+            ("avy-goto-line-above" function
+               (:user-visible-flag t
+                :arguments ("offset" "bottom-up"))
+                nil [67033 67551])
+            ("avy-goto-line-below" function
+               (:user-visible-flag t
+                :arguments ("offset" "bottom-up"))
+                nil [67568 68100])
+            ("avy-line-insert-style" variable (:default-value 'above) nil [68102 68279])
+            ("avy-goto-end-of-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [68296 68456])
+            ("avy-copy-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [68473 69348])
+            ("avy-move-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [69365 70174])
+            ("avy-copy-region" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [70191 71222])
+            ("avy-move-region" function (:user-visible-flag t) nil [71239 71840])
+            ("avy-kill-region" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [71857 73248])
+            ("avy-kill-ring-save-region" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [73265 74492])
+            ("avy-kill-whole-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [74509 75345])
+            ("avy-kill-ring-save-whole-line" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [75362 76253])
+            ("avy-setup-default" function nil nil [76270 76421])
+            ("avy-timeout-seconds" variable (:default-value 0.5) nil [76423 76523])
+            ("avy-enter-times-out" variable (:default-value t) nil [76525 76652])
+            ("avy-text" variable nil nil [76654 76726])
+            ("avy--read-candidates" function (:arguments ("re-builder")) nil [76728 80723])
+            ("avy--old-cands" variable nil nil [80725 80752])
+            ("avy-goto-char-timer" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [80769 81220])
+            ("avy-push-mark" function nil nil [81222 81442])
+            ("avy-pop-mark" function (:user-visible-flag t) nil [81444 82048])
+            ("avy-transpose-lines-in-region" function (:user-visible-flag t) nil [82065 82693])
+            ("org-reverse-note-order" variable nil nil [82710 82741])
+            ("declare-function" code nil nil [82742 82777])
+            ("declare-function" code nil nil [82778 82822])
+            ("declare-function" code nil nil [82823 82858])
+            ("org-after-refile-insert-hook" variable nil nil [82860 82897])
+            ("avy-org-refile-as-child" function (:user-visible-flag t) nil [82899 84053])
+            ("avy-org-goto-heading-timer" function
+               (:user-visible-flag t
+                :arguments ("arg"))
+                nil [84055 84575])
+            ("avy" package nil nil [84577 84591]))          
+      :file "avy.el"
+      :pointmax 84614
+      :fsize 84631
+      :lastmodtime '(25869 47990 71049 706000)
+      :unmatched-syntax nil))
+  :file "!Users!parkergabel!.emacs.d!straight!repos!avy!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

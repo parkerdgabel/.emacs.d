@@ -1,0 +1,82 @@
+;; Object semanticdb-project-database-file-46adc18a
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-46adc18a"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-46277ddc"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("package" include nil nil [1 19])
+            ("bootstrap-version" variable nil nil [37 63])
+            ("let" code nil nil [64 534])
+            ("setq" code nil nil [567 727])
+            ("package-initialize" code nil nil [771 791])
+            ("when" code nil nil [793 902])
+            ("unless" code nil nil [955 1017])
+            ("setq" code nil nil [1100 1137])
+            ("dolist" code nil nil [1214 1319])
+            ("use-package" code nil nil [1401 1783])
+            ("use-package" code nil nil [1785 1844])
+            ("use-package" code nil nil [1846 1902])
+            ("use-package" code nil nil [1904 1971])
+            ("use-package" code nil nil [1973 2044])
+            ("use-package" code nil nil [2046 2148])
+            ("electric-pair-mode" code nil nil [2151 2173])
+            ("use-package" code nil nil [2175 2807])
+            ("use-package" code nil nil [2809 3025])
+            ("use-package" code nil nil [3027 3064])
+            ("use-package" code nil nil [3066 3104])
+            ("use-package" code nil nil [3106 3142])
+            ("use-package" code nil nil [3144 3202])
+            ("use-package" code nil nil [3204 3289])
+            ("use-package" code nil nil [3291 4605])
+            ("use-package" code nil nil [4607 4696])
+            ("use-package" code nil nil [4698 4789])
+            ("use-package" code nil nil [4858 5092])
+            ("use-package" code nil nil [5094 5280])
+            ("use-package" code nil nil [5282 5395])
+            ("use-package" code nil nil [5414 5781])
+            ("use-package" code nil nil [5783 5881])
+            ("use-package" code nil nil [5959 6021])
+            ("use-package" code nil nil [6062 7070])
+            ("use-package" code nil nil [7125 7574])
+            ("use-package" code nil nil [7632 8162])
+            ("use-package" code nil nil [8201 13968])
+            ("use-package" code nil nil [13970 14924])
+            ("use-package" code nil nil [14986 15170])
+            ("use-package" code nil nil [15172 15287])
+            ("use-package" code nil nil [15289 15707])
+            ("use-package" code nil nil [15709 15781])
+            ("use-package" code nil nil [15783 15820])
+            ("use-package" code nil nil [15822 15886])
+            ("use-package" code nil nil [15888 15921])
+            ("use-package" code nil nil [15923 15997])
+            ("use-package" code nil nil [15999 16074])
+            ("use-package" code nil nil [16076 16114])
+            ("use-package" code nil nil [16116 16302])
+            ("use-package" code nil nil [16304 16470])
+            ("use-package" code nil nil [16472 16619])
+            ("use-package" code nil nil [16621 16681])
+            ("use-package" code nil nil [16683 16763])
+            ("use-package" code nil nil [16765 17043])
+            ("use-package" code nil nil [17045 17475])
+            ("use-package" code nil nil [17477 17534])
+            ("use-package" code nil nil [17536 17618])
+            ("add-hook" code nil nil [17620 17664])
+            ("toggle-transparency" function (:user-visible-flag t) nil [17666 18114])
+            ("global-set-key" code nil nil [18116 18167])
+            ("add-to-list" code nil nil [18169 18212])
+            ("custom-set-variables" code nil nil [18215 18856])
+            ("custom-set-faces" code nil nil [18857 19096]))          
+      :file "init.el"
+      :pointmax 19097
+      :fsize 19096
+      :lastmodtime '(25879 16516 75763 245000)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table-43f3a3a6"
+      :file "org-clock-save.el"
+      :fsize 115
+      :lastmodtime '(25878 63540 70821 278000)))
+  :file "!Users!parkergabel!.emacs.d!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/rainbow-delimiters/rainbow-delimiters.el

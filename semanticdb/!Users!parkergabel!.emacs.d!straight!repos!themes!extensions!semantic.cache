@@ -1,0 +1,42 @@
+;; Object semanticdb-project-database-file-4a813e36
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-4a813e36"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-4a813e68"
+      :major-mode emacs-lisp-mode
+      :tags 
+        '( ("doom-themes-org" customgroup (:user-visible-flag t) nil [764 859])
+            ("define-obsolete-variable-alias" code nil nil [861 971])
+            ("doom-themes-org-fontify-special-tags" variable (:default-value t) nil [972 1180])
+            ("doom-themes-org-fontify-exclude-types" variable (:default-value '(src-block link citation-reference)) nil [1182 1434])
+            ("doom-themes-org-at-tag" variable
+               (:default-value '((t :inherit org-formula))
+                :type "face")
+                nil [1436 1567])
+            ("doom-themes-org-hash-tag" variable
+               (:default-value '((t :inherit org-tag))
+                :type "face")
+                nil [1569 1701])
+            ("org-done-keywords" variable nil nil [1704 1730])
+            ("org-font-lock-extra-keywords" variable nil nil [1731 1768])
+            ("org-heading-keyword-regexp-format" variable nil nil [1769 1811])
+            ("org-todo-regexp" variable nil nil [1812 1836])
+            ("org-fontify-done-headline" variable nil nil [1837 1871])
+            ("org-activate-links" variable nil nil [1872 1899])
+            ("declare-function" code nil nil [1900 1960])
+            ("declare-function" code nil nil [1961 2024])
+            ("declare-function" code nil nil [2025 2101])
+            ("doom-themes--org-tag-face" function (:arguments ("n")) nil [2106 2519])
+            ("doom-themes-enable-org-fontification" function nil nil [2521 5693])
+            ("add-hook" code nil nil [5695 5777])
+            ("doom-themes-org-config" function nil nil [5794 5859])
+            ("doom-themes-ext-org" package nil nil [5861 5891]))          
+      :file "doom-themes-ext-org.el"
+      :pointmax 5929
+      :fsize 5928
+      :lastmodtime '(25869 48049 552742 5000)
+      :unmatched-syntax nil))
+  :file "!Users!parkergabel!.emacs.d!straight!repos!themes!extensions!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

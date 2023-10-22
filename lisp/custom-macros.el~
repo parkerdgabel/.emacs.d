@@ -1,0 +1,3 @@
+(defmacro require*
+    (&rest args)
+  `(mapc #'require '(,@args)))

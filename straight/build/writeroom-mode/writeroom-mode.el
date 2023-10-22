@@ -1,0 +1,1 @@
+/Users/parkergabel/.emacs.d/straight/repos/writeroom-mode/writeroom-mode.el

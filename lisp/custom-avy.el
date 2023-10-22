@@ -1,3 +1,10 @@
+
+(require 'custom-macros)
+
+(require* org avy)
+
+(consult--read load-path)
+
 (defun avy-org-same-level (&optional all)
   "Go to any org heading of the same level as the current one.
 
